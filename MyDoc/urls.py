@@ -28,6 +28,7 @@ urlpatterns = [
 
     path('appointment', views.Appointment.as_view(), name='appointment'),
     path('my_profile', views.my_profile, name='my_profile'),
+    path('my_profile', views.my_profile, name='my_profile'),
     path('patient_profile', views.patient_profile, name='patient_profile'),
 
     ]

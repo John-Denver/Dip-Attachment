@@ -1,10 +1,9 @@
 {% extends "MyDoc/nav_pat.html" %}
 {% load crispy_forms_filters %}
-{% load crispy_forms_filters %}
 {% load static %}
 
+{% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
-{% load crispy_forms_field %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,76 +36,86 @@
 
 </head>
 
-<style>
-
-.account-img {
-    height: 135px;
-    width: 135px;
-    margin-right: 20px;
-    margin-top: -79px;
-}
-
-.content-section {
-    background: #ffffff;
-    padding: 100px 20px 10px;
-    border: 1px solid #dddddd;
-    border-radius: 3px;
-    margin-left: 60px;
-    margin-top: 90px;
-    margin-bottom: 20px;
-
-  }
-
-.account-heading {
-    font-size: 30px;
-    margin-top: -79px;
-  }
-
-body {
-    background: #f7f6f8;
-    color: #333333;
-
-  }
-
-</style>
-
-
-<body>
 
 {% block content %}
-    <main role="main" class="container">
+<body style=" background: #f7f6f8; color: #333333;">
+
+    {% if user.is_authenticated %}
+<div class="col-md-7">
+    <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
+    <div class="media">
+         <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;" src="{{ user.patient.image.url }}">
+      <div class="media-body">
+
+            <h2 class="account-heading" style="font-size: 30px; margin-top: -79px;">{{ user.patient.username }}</h2>
+            <p class="text-secondary">{{ user.patient.email }}</p>
+
+      </div>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Update Profile</legend>
+                {{ u_update|crispy }}
+                {{ p_update|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+ <main role="main" class="container" style="margin-right: -580px; margin-top: -300px">
           <div class="row">
- <div class="col-md-4" style="margin-top: 300px; margin-left: 150px">
-                <div class="content-section">
+              <div class="" style="width: 530px;">
+                <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
                   <div class="media">
-                    <img class="rounded-circle account-img" src="{{ patient.image.url }}">
-                    <div class="media-body">
-                        <h2 class="">{{ user.username }}</h2>
-                        <p class="text-secondary">{{ user.email }}</p>
-                        <a href="" class="btn btn-outline-info mr-4" >Update information</a>
+                    <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;"
+                         src="{{ user.patient.image.url }}">
+                    <div class="media-body" style="margin-top: -60px;">
+                        <h2 class="">{{ user.patient.username }}</h2>
+                        <p class="text-secondary">{{ user.patient.email }}</p>
+                        <a href="{% url 'MyDoc:patient_profile' %}" class="btn btn-outline-info mr-4" >Update information</a>
                     </div>
                   </div>
                   <p class='text-muted'>E-Learning And Professional Networking.
-                    <br><br>Health Problems you've had in the last year
+                    <br><br>Profile And state
                     <ul class="list-group">
                       <li class="list-group-item list-group-item-light">Age: {{ user.patient.age }}</li>
-                      <li class="list-group-item list-group-item-light">Gender : {{ user.patient.gender }}</li>
-                      <li class="list-group-item list-group-item-light">Email : {{ user.patient.email }}</li>
+                      <li class="list-group-item list-group-item-light">Gender: {{ user.patient.gender }}</li>
                       <li class="list-group-item list-group-item-light">Contact: {{ user.patient.contact }}</li>
                       <li class="list-group-item list-group-item-light">blood_type: {{ user.patient.blood_type }}</li>
                       <li class="list-group-item list-group-item-light">Last Checkup: {{ user.patient.Cough }}</li>
                       <li class="list-group-item list-group-item-light">Next Checkup: {{ user.patient.Cough }}</li>
-
                     </ul>
 
                   </p>
 
-
-
                 </div>
               </div>
-          </div>
-    </main>
+
+
+            {% else %}
+                <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
+                  <div class="media">
+                    <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;"
+                         src="{{ user.patient.image.url }}">
+                    <div class="media-body">
+                        <h4 class="">Logged Out</h4>
+                        <p class="text-secondary">Don't have an account? create new account </p>
+                        <a href="{% url 'MyDoc:register' %}" class="btn-outline-info" >Create Account Now</a>
+                        <a href="{% url 'MyDoc:login_patient' %}" class="btn-outline-info" >Login</a>
+
+                    </div>
+                  </div>
+
+                </div>
+                 {% endif %}
+              </div>
+
+
+ </main>
 
 {% endblock %}
 

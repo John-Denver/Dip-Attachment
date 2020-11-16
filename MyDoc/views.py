@@ -68,20 +68,20 @@ def doctors(request):
     return render(request, 'MyDoc/doctors.html')
 
 
-def patient_profile(request):
+def patient_profile(request, user):
     form = PatientForm(request.POST or None, request.FILES or None)
     if form.is_valid():
-        patient = form.save(commit=False)
-        patient.username = request.POST['username']
-
-        patient.age = request.POST['age']
-        patient.gender = request.POST['gender']
-        patient.email = request.POST['email']
-        patient.contact = request.POST['contact']
-        patient.blood_type = request.POST['blood_type']
-        patient.user = request.user
-        patient.save()
-        return render(request, 'MyDoc/my_profile.html', {'patient': patient})
+        user = form.save(commit=False)
+        user.username = request.POST['username']
+        user.image = request.POST['image']
+        user.age = request.POST['age']
+        user.gender = request.POST['gender']
+        user.email = request.POST['email']
+        user.contact = request.POST['contact']
+        user.blood_type = request.POST['blood_type']
+        user.user = request.user
+        user.save()
+        return render(request, 'MyDoc/my_profile.html', {'user': user})
     form = PatientForm()
     return render(request, 'MyDoc/profile_update.html', {'form': form})
 
@@ -92,10 +92,25 @@ def detail(request, pat_id):
 
 
 def my_profile(request):
+    u_update = UserUpdate()
+    p_update = ProfileUpdate()
+
     if request.user.is_authenticated:
         return render(request, 'MyDoc/my_profile.html')
     else:
         return redirect('MyDoc:login_patient')
+
+    
+def profile_update(request):
+    u_update = UserUpdate()
+    p_update = ProfileUpdate()
+
+    context = {
+        'u_update': u_update,
+        'p_update': p_update
+    }
+
+    return render(request, 'MyDoc/my_profile.html', context)
 
 
 def all_patients(request):
@@ -132,7 +147,7 @@ def register_patient(request):
     return render(request, 'MyDoc/register.html', {'form': form})
 
 
-def login_patient(request):
+def login_patient(request, self=None):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -141,6 +156,8 @@ def login_patient(request):
             if user.is_active:
                 login(request, user)
                 return redirect('MyDoc:my_profile')
+            else:
+                messages.info(self.request, f"Your account have been created")
     return render(request, 'MyDoc/sign-in.html')
 
 
@@ -166,4 +183,3 @@ def contact(request):
         mes.save()
     form = ContactForm()
     return render(request, 'MyDoc/contact.html', {'form': form})
-

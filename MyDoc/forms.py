@@ -31,6 +31,20 @@ class PatientForm(forms.ModelForm):
         fields = ('username', 'image', 'age', 'gender', 'email', 'contact', 'blood_type')
 
 
+class UserUpdate(forms.ModelForm):
+    email = forms.EmailField(widget=forms.EmailInput)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+
+
+class ProfileUpdate(forms.ModelForm):
+    class Meta:
+        model = Patient
+        fields = ('image', 'age', 'contact')
+
+
 class AppointmentForm(forms.Form):
     name = forms.CharField(max_length=60)
     id_number = forms.CharField(max_length=60)

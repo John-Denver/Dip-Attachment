@@ -129,9 +129,10 @@ STATIC_URL = '/static/'
 # Static files (css, js, images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+STATICFILES_DIRS = [
 
-STATICFILES_DIRS = ( ('assets', 'app-root/repo/wsgi/openshift/static'),)
+    os.path.join(BASE_DIR, 'static'),
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
