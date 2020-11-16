@@ -1,0 +1,105 @@
+{% extends 'MyDoc/nav_pat.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>My_Doc</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/index.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/login.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/responsive.css' %}" type="text/css">
+
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/open-iconic-bootstrap.min.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
+
+        <script src="{% static 'MyDoc/js/scrpt.js' %}"></script>
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/ionicons.min.css' %}">
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/icomoon.css' %}">
+
+
+</head>
+
+<body>
+<h2 class="sgn">Sign in/ Registration Form</h2>
+
+<div class="containerr " id="container">
+		<div class="form-container sign-in-container">
+
+                <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <h1 class="create">Sign in</h1>
+                        <div class="social-container">
+                            <a href="https://facebook.com" class="social lnks"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://google.com" class="social lnks"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="https://linkedin.com" class="social lnks"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <span class="span">or use your account</span>
+<div class="row">
+                        <div class="form-group col-lg-12">
+                            <input type="text" class="form-control" placeholder="Your Username..." name="username" required>
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <input type="password" placeholder="password" class="form-control" name="password" required>
+                        </div>
+</div>
+                        <button type="submit" name="lgn">Sign In</button>
+                        <a class="lnks" href="#">Forgot your password?</a>
+
+                    </form>
+
+
+	</div>
+	<div class="overlay-container">
+		<div class="overlayy">
+			<div class="overlay-panel overlay-left">
+				<h1 class="create">Welcome Back!</h1>
+				<p class="para" >To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1 class="create">Hello!</h1>
+				<p class="para" >Register at our hospital for the digital Transformation</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+ {% include 'MyDoc/footer.html' %}
+
+
+<script>
+	
+	const signUpButton = document.getElementById("signUp");
+	const signInButton = document.getElementById("signIn");
+	const container = document.getElementById("container");
+	
+
+	signUpButton.addEventListener("click", () => {
+		container.classList.add("right-panel-active")
+	})
+	
+	signInButton.addEventListener("click", () => {
+		container.classList.remove("right-panel-active")
+	})
+</script>
+
+{% endblock %}
+
+</body>
+</html>

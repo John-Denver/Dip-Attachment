@@ -1,0 +1,35 @@
+<?php
+$conn=mysqli_connect("localhost","root","","denver")or die(mysqli_error($conn));
+
+if(isset($_POST['submit'])){
+   
+$fname = $_POST["name"];
+$gender = $_POST["gender"];
+$email = $_POST["email"];
+$pnumber = $_POST["number"];
+$password = $_POST["password"];
+$salt = "encrypt";
+$password_encrypted = sha1($password.$salt);
+
+    //inserting to the database
+    $query = mysqli_query($conn,"INSERT INTO signup(id , name, gender, email, number, password)
+    VALUES(null,'$fname', '$gender', '$email', '$pnumber', '$password_encrypted')") or die(mysqli_error($conn));
+
+    if($query){
+        ?>
+    <script>
+        alert('Your Details have been recorded!....Sign in');
+    </script>
+<?php
+        header('refresh:1;url=sign-in.php');
+    }else{
+        ?>
+        <script>
+            alert('Sign up error!!....Retry');
+        </script>
+        <?php
+        header('refresh:url=sign-in.php');
+    }
+    
+}  
+    ?>

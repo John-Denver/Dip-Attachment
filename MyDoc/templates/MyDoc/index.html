@@ -1,0 +1,101 @@
+{% extends 'MyDoc/navbar.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+        <title>My_Doc</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/index.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/responsive.css' %}" type="text/css">
+
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/open-iconic-bootstrap.min.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
+
+
+
+        <script src="{% static 'MyDoc/js/scrpt.js' %}"></script>
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/ionicons.min.css' %}">
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/icomoon.css' %}">
+
+
+</head>
+
+
+        <section>
+            <header>
+                <a href="#" class="logo" style="margin-top: 19px; color: #16e932;">My_Doc</a>
+                <div class="toggle"></div>
+            </header>
+            <img src="{% static 'MyDoc/image/bg_4.jpg' %}"  class="bg" alt="">
+            <img src="{% static 'MyDoc/image/naas.png' %}" class="bird" alt="">
+
+            <div class="content">
+                <h2>We Can Save humanity from the <br><span>Corona Virus</span></h2>
+                <p>nvnfjnvcewcweceb cj wec e cj we v we wewe wewejw evwe we we  wef wefwe few f wejwe we</p>
+                <a href="#"  onclick="openForm()" >Make Appointemnt</a>
+            </div>
+
+            <ul class="sci">
+                <li><a href="https://facebook.com" target="_blank"><img src="{% static 'MyDoc/image/facebook.png' %}" alt=""></a></li>
+                <li><a href="https://twitter.com" target="_blank"><img src="{% static 'MyDoc/image/twitter.png' %}" alt=""></a></li>
+                <li><a href="https://instagram.com" target="_blank"><img src="{% static 'MyDoc/image/instagram.png' %}" alt=""></a></li>
+            </ul>
+
+        </section>
+        <!--End Landng Sect-->
+
+     {% include 'MyDoc/appointment.html' %}
+
+
+             <!----Departments Shortcut Landing page---->
+             <div class="deps">
+               <div class="card">
+                 <div class="box">
+                   <div class="content">
+                      <h2>01</h2>
+                      <h3>Cardiology</h3>
+                      <p>This is the Cardiology department card and ts just for teesting this cards</p>
+                      <a href="#">Explore</a>
+                   </div>
+                 </div>
+               </div>
+               <div class="card">
+                <div class="box">
+                  <div class="content">
+                     <h2>02</h2>
+                     <h3>Cardiology</h3>
+                     <p>This is the Cardiology department card and ts just for teesting this cards</p>
+                     <a href="#">Explore</a>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="box">
+                  <div class="content">
+                     <h2>03</h2>
+                     <h3>Cardiology</h3>
+                     <p>This is the Cardiology department card and ts just for teesting this cards</p>
+                     <a href="#">Explore</a>
+                  </div>
+                </div>
+              </div>
+             </div>
+             <!----End of departments Shortcut Landing page---->
+ {% include 'MyDoc/footer.html' %}
+
+</html>
+
+{% endblock %}
+
