@@ -22,13 +22,31 @@ class Patient(models.Model):
         return self.username
 
 
-class PatientRec(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    song_name = models.CharField(max_length=20)
-    song_file = models.FileField()
+class Department(models.Model):
+    d_name = models.CharField(max_length=30)
+    hod = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.song_name
+        return self.d_name
+
+
+class Clinician(models.Model):
+    c_name = models.CharField(max_length=60)
+    department = models.ForeignKey(Department, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.c_name
+
+
+class Medrecs(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    title = models.CharField(max_length=60, null=True)
+    clinician = models.ForeignKey(Clinician, on_delete=models.PROTECT)
+    Patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    meds = models.TextField()
+
+    def __str__(self):
+        return self.title
 
 """"
 class Profile(models.Model):

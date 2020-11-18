@@ -1,0 +1,53 @@
+{% load static %}
+
+{% block content %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title>Departments</title>
+</head>
+<body>
+
+ <div class="page-header" style="background: #ffffff; margin-bottom: 20px;">
+            <h1 class="text-center text-primary"> <strong>Medical Records</strong></h1>
+        </div>
+
+    <br>
+    <br>
+    <br>
+
+        {% if meds %}
+            {% for m in meds %}
+    <div class="col-sm-6 panel-primary">
+    <img class="logo" style="height: 35px; width: 35px; margin-right: 15px;" src="{{ user.patient.image.url }}">
+        <p>St.Denvers Hospital,</p><br>
+        <p>Healthcare is our compassion</p>
+        <p>{{ m.title }}</p>
+        <div class="panel panel-primary">
+            <div class="panel-heading active">
+                <h3 class="text-success">Doctor:{{ m.clinician }}</h3>
+                <p>Name: {{ m.patient }}</p>
+            </div>
+
+            <div class="panel-body">
+                <p>Medication: {{ m.meds }}</p>
+            </div>
+        </div>
+    </div>
+
+
+
+            {% endfor %}
+    {% endif %}
+
+
+
+        {% include 'MyDoc/footer.html' %}
+{% endblock %}
+
+

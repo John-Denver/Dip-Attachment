@@ -2,57 +2,31 @@
 {% load crispy_forms_filters %}
 {% load static %}
 
-{% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-        <title>My_Doc</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <link rel="stylesheet" href="{% static 'MyDoc/css/index.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/login.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/responsive.css' %}" type="text/css">
-
-
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/open-iconic-bootstrap.min.css' %}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
-
-        <link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
-
-        <script src="{% static 'MyDoc/js/scrpt.js' %}"></script>
-
-        <link rel="stylesheet" href="{% static 'MyDoc/css/animate.css' %}">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/ionicons.min.css' %}">
-
-        <link rel="stylesheet" href="{% static 'MyDoc/css/flaticon.css' %}">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/icomoon.css' %}">
-
-
-</head>
-
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 {% block content %}
 <body style=" background: #f7f6f8; color: #333333;">
 
-    {% if user.is_authenticated %}
 <div class="col-md-7">
     <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
-    <div class="media">
-         <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;" src="{{ user.patient.image.url }}">
-      <div class="media-body">
+          <div class="media">
+             <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;" src="{{ user.patient.image.url }}">
+          <div class="media-body">
 
-            <h2 class="account-heading" style="font-size: 30px; margin-top: -79px;">{{ user.patient.username }}</h2>
-            <p class="text-secondary">{{ user.patient.email }}</p>
+            <h2 class="account-heading" style="font-size: 30px; margin-top: -79px;">{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
 
       </div>
     </div>
-    <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Update Profile</legend>
@@ -66,7 +40,7 @@
     </div>
 </div>
 
- <main role="main" class="container" style="margin-right: -580px; margin-top: -300px">
+<main role="main" class="container" style="margin-right: -580px; margin-top: -433px">
           <div class="row">
               <div class="" style="width: 530px;">
                 <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
@@ -74,14 +48,15 @@
                     <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;"
                          src="{{ user.patient.image.url }}">
                     <div class="media-body" style="margin-top: -60px;">
-                        <h2 class="">{{ user.patient.username }}</h2>
-                        <p class="text-secondary">{{ user.patient.email }}</p>
-                        <a href="{% url 'MyDoc:patient_profile' %}" class="btn btn-outline-info mr-4" >Update information</a>
+                        <h2 class="">{{ user.username }}</h2>
+                        <p class="text-secondary">{{ user.email }}</p>
+                        <a href="{% url 'MyDoc:profile_update' %}" class="btn btn-outline-info mr-4" >Update information</a>
                     </div>
                   </div>
-                  <p class='text-muted'>E-Learning And Professional Networking.
+                  <p class='text-muted'>E-Medcs And Professional Working.
                     <br><br>Profile And state
                     <ul class="list-group">
+                      <li class="list-group-item list-group-item-light">First Name: {{ user.patient.first_name }} Last Name: {{ user.patient.last_name }}</li>
                       <li class="list-group-item list-group-item-light">Age: {{ user.patient.age }}</li>
                       <li class="list-group-item list-group-item-light">Gender: {{ user.patient.gender }}</li>
                       <li class="list-group-item list-group-item-light">Contact: {{ user.patient.contact }}</li>
@@ -95,33 +70,42 @@
                 </div>
               </div>
 
-
-            {% else %}
-                <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
-                  <div class="media">
-                    <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;"
-                         src="{{ user.patient.image.url }}">
-                    <div class="media-body">
-                        <h4 class="">Logged Out</h4>
-                        <p class="text-secondary">Don't have an account? create new account </p>
-                        <a href="{% url 'MyDoc:register' %}" class="btn-outline-info" >Create Account Now</a>
-                        <a href="{% url 'MyDoc:login_patient' %}" class="btn-outline-info" >Login</a>
-
-                    </div>
-                  </div>
-
-                </div>
-                 {% endif %}
-              </div>
-
+  </div>
 
  </main>
 
+ <div class="page-header" style="background: #ffffff; margin-bottom: 20px;">
+            <h1 class="text-center text-primary"> <strong>Medical Records</strong></h1>
+        </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="col-sm-6 panel-primary">
+    <img class="logo" style="height: 35px; width: 35px; margin-right: 15px;" src="{{ user.patient.image.url }}">
+        <p>St.Denvers Hospital,</p><br>
+        <p>Healthcare is our compassion</p>
+        <p>{{ user.medrecs.title }}</p>
+        <div class="panel panel-primary">
+            <div class="panel-heading active">
+                <h3 class="text-success">Doctor:{{ user.medrecs.clinician }}</h3>
+                <p>Name: {{ user.patient }}</p>
+            </div>
+
+            <div class="panel-body">
+                <p>Medication: {{ user.medrecs.meds }}</p>
+            </div>
+        </div>
+    </div>
+
+
+        {% include 'MyDoc/footer.html' %}
 {% endblock %}
 
 
-</body>
-</html>
+ </body>
+
 
 
 

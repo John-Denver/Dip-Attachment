@@ -14,8 +14,9 @@ app_name = 'MyDoc'
 urlpatterns = [
     path('', views.index, name='index'),
     path('all_patients', views.all_patients, name='all_patients'),
+    path('patient', views.patient, name='patient'),
     path('(?<pat_id>[0-9]+)/', views.detail, name='detail'),
-    path('patient_profile', views.patient_profile, name='patient_profile'),
+    path('profile_update', views.profile_update, name='profile_update'),
     path('(?<pat_id>[0-9]+)/delete_pat', views.delete_pat, name='delete_pat'),
 
     path('contact', views.contact, name='contact'),
@@ -30,6 +31,7 @@ urlpatterns = [
     path('my_profile', views.my_profile, name='my_profile'),
     path('my_profile', views.my_profile, name='my_profile'),
     path('patient_profile', views.patient_profile, name='patient_profile'),
+    path('medrecs', views.medrecs, name='medrecs'),
 
     ]
 

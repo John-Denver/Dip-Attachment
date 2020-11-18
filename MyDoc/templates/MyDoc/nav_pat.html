@@ -2,7 +2,7 @@
 
 <html lang="en">
   <head>
-        <title>My_Doc</title>
+        <title>{{ user.username }}'s Profile</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -50,19 +50,18 @@
             </li>
               <li class="nav-item" onclick="openForm()"><a class="nav-link" href="#"  data-toggle="modal" data-target="#modalAppointment"><span>Make an Appointment</span></a></li>
 
+              <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:patient_profile' %}"><i class="fa fa-home"></i>&nbsp;patient_profile</a></li>
+
+              <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:profile_update' %}"><i class="fa fa-home"></i>&nbsp;profile_update</a></li>
         </ul>
-            <ul class="nav navbar-nav navbar-right  ml-auto">
+            <ul class="nav navbar-nav navbar-right  mr-0">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'MyDoc:logout_patient' %}">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Log out
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'MyDoc:patient_profile' %}">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;profile_Update
-                    </a>
-                </li> {% else %}
+                {% else %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:login_patient' %}">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Log in
                     </a>

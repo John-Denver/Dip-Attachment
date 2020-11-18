@@ -6,12 +6,12 @@
     <div class="content-section">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Create User Account Join Today</legend>
+            <fieldset class="form-group col-lg-7">
+                <legend class="border-bottom mb-4">Patient</legend>
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Create User Account</button>
+                <button class="btn btn-outline-info" type="submit">Submit</button>
             </div>
         </form>
         <div class="border-top pt-3">
@@ -20,11 +20,6 @@
             </small>
         </div>
 
-        <div class="border-top pt-3">
-            <small class="">
-                Create Medical Practitioner Account <a class="ml-2" href="">Here</a>
-            </small>
-        </div>
     </div>
 
 

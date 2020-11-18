@@ -36,13 +36,13 @@ class UserUpdate(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ['username', 'email']
 
 
 class ProfileUpdate(forms.ModelForm):
     class Meta:
         model = Patient
-        fields = ('image', 'age', 'contact')
+        fields = ['image', 'age', 'contact']
 
 
 class AppointmentForm(forms.Form):

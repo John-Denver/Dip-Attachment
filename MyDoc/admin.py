@@ -8,3 +8,6 @@ admin.site.register(Patient)
 admin.site.register(Contact)
 admin.site.register(Appointment)
 
+admin.site.register(Clinician)
+admin.site.register(Department)
+admin.site.register(Medrecs)
