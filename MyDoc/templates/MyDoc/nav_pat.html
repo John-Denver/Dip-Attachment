@@ -1,40 +1,10 @@
 {% load static %}
 
 <html lang="en">
-  <head>
-        <title>{{ user.username }}'s Profile</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <link rel="stylesheet" href="{% static 'MyDoc/css/index.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/responsive.css' %}" type="text/css">
-
-
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/open-iconic-bootstrap.min.css' %}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
-
-        <link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
-
-
-
-        <script src="{% static 'MyDoc/js/scrpt.js' %}"></script>
-
-        <link rel="stylesheet" href="{% static 'MyDoc/css/animate.css' %}">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/ionicons.min.css' %}">
-
-        <link rel="stylesheet" href="{% static 'MyDoc/css/flaticon.css' %}">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/icomoon.css' %}">
-
-
-</head>
-
-<header class="header_area">
+  <header class="header_area">
   <div class="main_menu">
-    <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
-      <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar" style="background: #5409e9;">
+      <div class="container" style="background: #5409e9;">
         
         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
           <ul class="nav navbar-nav navbar-left menu_nav">
@@ -42,25 +12,26 @@
 
             <li class="nav-item submenu dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-              aria-expanded="false">My Hospital Records<i class="fa fa-caret-down"></i></a>
+              aria-expanded="false">Consultation<i class="fa fa-caret-down"></i></a>
               <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:index' %}">Blood Type&nbsp; <i class="fa fa-blog"></i></a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:index' %}">Blog Details</a></li>
+                <li class="nav-item" style="background: #5409e9;"><a class="nav-link" href="{% url 'MyDoc:index' %}">Consultation &nbsp; <i class="fa fa-blog"></i></a></li>
+                <li class="nav-item" style="background: #5409e9;"><a class="nav-link" href="{% url 'MyDoc:index' %}">Department HODs</a></li>
               </ul>
             </li>
-              <li class="nav-item" onclick="openForm()"><a class="nav-link" href="#"  data-toggle="modal" data-target="#modalAppointment"><span>Make an Appointment</span></a></li>
+              <li class="nav-item" onclick="openForm()"><a class="nav-link" href="{% url 'MyDoc:appointment' %}"  data-toggle="modal" data-target="#modalAppointment"><i class="fa fa-address-book" style="color: #2bff00" aria-hidden="true"></i>&nbsp;<span>Make an Appointment</span></a></li>
 
-              <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:patient_profile' %}"><i class="fa fa-home"></i>&nbsp;patient_profile</a></li>
-
-              <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:profile_update' %}"><i class="fa fa-home"></i>&nbsp;profile_update</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:profile_update' %}"><i class="fa fa-user-plus" style="color: #2bff00"></i>&nbsp;Profile_update</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:message' %}"><i class="fa fa-comments" style="color: #2bff00"></i>&nbsp;Messages</a></li>
         </ul>
-            <ul class="nav navbar-nav navbar-right  mr-0">
+            <ul class="nav navbar-nav navbar-right" style="margin-right: -110px">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'MyDoc:logout_patient' %}">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Log out
+                        <i class="fa fa-power-off" style="color: red" aria-hidden="true"></i>&nbsp;Log out
                     </a>
                 </li>
+                    <img class="rounded-circle account-img" style="height: 30px; width: 35px; margin-left: 260px; margin-top: 6px;"
+                         src="{{ user.patient.image.url }}">
                 {% else %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:login_patient' %}">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Log in
@@ -68,6 +39,7 @@
                 </li>
                 {% endif %}
             </ul>
+
 
         </div>
       </div>

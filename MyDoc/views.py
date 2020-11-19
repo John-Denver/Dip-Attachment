@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views import View
 from django.views.generic import CreateView
@@ -9,6 +10,7 @@ from .models import *
 from django.contrib.auth import login, authenticate, logout
 
 # Create your views here.
+
 
 def index(request):
     contact = Contact.objects.all()
@@ -23,7 +25,7 @@ def index(request):
 
     return render(request, 'MyDoc/index.html', context)
 
-
+"""
 class Appointment(View):
     @staticmethod
     def get(request, *args, **kwargs):
@@ -43,23 +45,30 @@ class Appointment(View):
         appnt.save()
         form = AppointmentForm()
 
-        return render(request, 'MyDoc/index.html', {'form': form})
+        return render(request, 'MyDoc/index.html', {'form': form})"""
 
 
-"""
+@login_required(login_url='MyDoc:login_patient')
 def appointment(request):
-    form = AppointmentForm(request.POST or None, request.FILES or None)
+    form = AppointmentForm(request.POST or None)
     if form.is_valid():
         appnt = form.save(commit=False)
         appnt.name = request.POST['name']
-        appnt.id_number = request.POST['id_number']
+        appnt.subject = request.POST['subject']
         appnt.number = request.POST['number']
         appnt.email = request.POST['email']
         appnt.message = request.POST['message']
-        appnt.image = request.FILES['image']
         appnt.save()
     form = AppointmentForm()
-    return render(request, 'MyDoc/appointment.html', {'form': form}) """
+    return render(request, 'MyDoc/appointment.html', {'form': form})
+
+
+def message(request):
+    mess = Message.objects.all()
+    context = {
+        'message': mess
+    }
+    return render(request, 'MyDoc/message.html', context)
 
 
 def doctors(request):
@@ -107,8 +116,8 @@ def detail(request, pat_id):
 
 
 def my_profile(request):
-    meds = Medrecs.objects.all()
     if request.user.is_authenticated:
+        meds = Medrecs.objects.all().filter(user=request.user)
         return render(request, 'MyDoc/my_profile.html', {'meds': meds})
     else:
         return redirect('MyDoc:login_patient')
@@ -131,11 +140,11 @@ def profile_update(request):
         'p_update': p_update
     }
 
-    return render(request, 'MyDoc/my_profile.html', context)
+    return render(request, 'MyDoc/profile_update.html', context)
 
 
 def medrecs(request):
-    meds = MedRecs.objects.all()
+    meds = Medrecs.objects.all()
     return render(request, 'MyDoc/Department.html', {'meds': meds})
 
 

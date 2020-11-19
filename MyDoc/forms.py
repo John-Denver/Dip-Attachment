@@ -45,13 +45,7 @@ class ProfileUpdate(forms.ModelForm):
         fields = ['image', 'age', 'contact']
 
 
-class AppointmentForm(forms.Form):
-    name = forms.CharField(max_length=60)
-    id_number = forms.CharField(max_length=60)
-    number = forms.NumberInput()
-    email = forms.EmailField()
-    message = forms.Textarea()
-    image = forms.FileField()
+class AppointmentForm(forms.ModelForm):
 
     class Meta:
         model = Appointment

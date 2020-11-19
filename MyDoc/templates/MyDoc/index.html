@@ -56,7 +56,46 @@
         </section>
         <!--End Landng Sect-->
 
-     {% include 'MyDoc/appointment.html' %}
+        <div id="myOverlay" class="overlay">
+             <span class="closebtn" onclick="closeForm()">&times;</span>
+                <form class="modal-content" action="" method="POST" style="width: 600px; margin-left: 390px; top: 65px;">
+                    {% csrf_token %}
+
+                    <div class="imgcontainer">
+                      <span  onclick="closeForm()" class="close" title="close Form">&times;</span>
+                    </div>
+                        <p style="text-align: center; color:#167ce9; font-weight: 900;">Book An appointment</p>
+                    <div class="col-lg-12">
+
+                    <label class="form-group col-lg-12">
+                        <input type="text" placeholder="Enter full name" class="form-control" name="name" required>
+                    </label>
+
+                    <div class="row" style="padding-left: 15px; padding-right: 15px">
+                         <label class="form-group col-lg-5">
+                              <input type="number/text" class="form-control" placeholder="Subject" name="subject" maxlength="15" required>
+                         </label>
+                         <label class="form-group col-lg-7">
+                            <input type="number/text" class="form-control" placeholder="Phone Number" name="number" maxlength="15" required>
+                         </label>
+                    </div>
+
+                    <label class="form-group col-lg-12">
+                        <input type="email" placeholder="Email Address" class="form-control" name="email">
+                    </label>
+
+                </div>
+
+                    <label for="appointment_message" class="text-black col-lg-12" style="padding-left: 18px">Describe Your Illness / Reason for appointment
+                        <textarea name="message" class="form-control" rows="6" required></textarea>
+                    </label>
+
+                    <div class="form-group">
+                       <input type="submit" value="Send Message" name="submit" class="btn btn-primary">
+                    </div>
+                </form>
+        </div>
+                <!---End Appointment Modal-->
 
 
              <!----Departments Shortcut Landing page---->

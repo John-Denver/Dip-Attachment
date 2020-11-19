@@ -26,21 +26,11 @@
 
       </div>
     </div>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Update Profile</legend>
-                {{ u_update|crispy }}
-                {{ p_update|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Update</button>
-            </div>
-        </form>
+
     </div>
 </div>
 
-<main role="main" class="container" style="margin-right: -580px; margin-top: -433px">
+<main role="main" class="container" style="margin-right: -580px; margin-top: -280px">
           <div class="row">
               <div class="" style="width: 530px;">
                 <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
@@ -82,22 +72,30 @@
     <br>
     <br>
 
+        {% if meds %}
+            {% for m in meds %}
     <div class="col-sm-6 panel-primary">
     <img class="logo" style="height: 35px; width: 35px; margin-right: 15px;" src="{{ user.patient.image.url }}">
         <p>St.Denvers Hospital,</p><br>
         <p>Healthcare is our compassion</p>
-        <p>{{ user.medrecs.title }}</p>
+        <p>{{ m.title }}</p>
         <div class="panel panel-primary">
             <div class="panel-heading active">
-                <h3 class="text-success">Doctor:{{ user.medrecs.clinician }}</h3>
-                <p>Name: {{ user.patient }}</p>
+                <h3 class="text-success">Doctor:{{ m.clinician }}</h3>
+                <p>Name: {{ m.patient }}</p>
             </div>
 
             <div class="panel-body">
-                <p>Medication: {{ user.medrecs.meds }}</p>
+                <p>Medication: {{ m.meds }}</p>
             </div>
         </div>
     </div>
+
+
+
+            {% endfor %}
+    {% endif %}
+
 
 
         {% include 'MyDoc/footer.html' %}

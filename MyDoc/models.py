@@ -39,10 +39,10 @@ class Clinician(models.Model):
 
 
 class Medrecs(models.Model):
-    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="records")
     title = models.CharField(max_length=60, null=True)
     clinician = models.ForeignKey(Clinician, on_delete=models.PROTECT)
-    Patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    patient = models.OneToOneField(Patient, unique=True, default='Denver', on_delete=models.CASCADE)
     meds = models.TextField()
 
     def __str__(self):
@@ -64,29 +64,20 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'"""
 
 
-class Contact(models.Model):
-    name = models.CharField(max_length=40)
-    email = models.EmailField()
-    subject = models.CharField(max_length=50)
-    message = models.TextField()
-
-    def __str__(self):
-        return self.subject
-
-
 class Appointment(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=40)
-    id_number = models.IntegerField()
+    subject = models.CharField(max_length=60, null=True)
     number = models.IntegerField()
     email = models.EmailField()
     message = models.TextField()
-    image = models.FileField()
 
     def __str__(self):
-        return self.name
+        return self.subject
 
 
-class Message(models.Model):
+class Contact(models.Model):
+    clinician = models.ForeignKey(Clinician, null=True, on_delete=models.PROTECT)
     name = models.CharField(max_length=40)
     email = models.EmailField()
     subject = models.CharField(max_length=50)
@@ -95,3 +86,13 @@ class Message(models.Model):
     def __str__(self):
         return self.subject
 
+
+class Message(models.Model):
+    clinician = models.ForeignKey(Clinician, null=True, on_delete=models.PROTECT)
+    name = models.CharField(max_length=40)
+    email = models.EmailField()
+    subject = models.CharField(max_length=50)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.subject

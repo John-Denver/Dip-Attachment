@@ -1,10 +1,7 @@
-{% extends "MyDoc/nav_pat.html" %}
-{% load crispy_forms_filters %}
-{% load static %}
-
-
+{% extends 'MyDoc/nav_pat.html' %}
 {% load static %}
 {% block content %}
+
 <html lang="en">
 <head>
         <title>My_Doc</title>
@@ -35,21 +32,36 @@
 
 
 </head>
-<body>
-             <div class="content-section">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Book Appointment</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-warning" type="submit">Submit Appointment</button>
-            </div>
-        </form>
 
+    <div class="container-fluid">
+    <div class="row">
+        <h3 class="text-center text-primary">
+            Messages
+            <hr>
+        </h3>
+        {% if message %}
+            {% for mess in message %}
+
+
+        <div class="col-sm-3">
+            <div class="row">
+
+                <div class="member">
+                    <h4>From clinician: {{ mess.clinician }}</h4>
+                    <h4>{{ mess.name }}</h4>
+                    <h5>cc: {{ mess.email }}</h5>
+                    <h5>Subject: {{ mess.subject }}</h5>
+                    <h5>Message: {{ mess.message }}</h5>
+
+                </div>
+            </div>
+        </div>
+
+            {% endfor %}
+        {% endif %}
     </div>
-</body>
-</html>
+</div>
+
 {% endblock %}
 
+</html>

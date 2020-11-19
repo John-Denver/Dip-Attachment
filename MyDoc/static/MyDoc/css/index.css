@@ -36,7 +36,7 @@ body{
   padding: 10px;
   border: 0px;
   border-radius: 0px; }
-  
+
   .header_area .navbar .nav .nav-item {
   margin-left: 45px; }
   
@@ -44,7 +44,7 @@ body{
   font: 500 12px/80px "Roboto", sans-serif;
   text-transform: uppercase;
   font-weight: 900;
-  color: #167ce9;
+  color: #fff;
   padding: 0px;
   display: inline-block; }
   
@@ -54,7 +54,7 @@ body{
   .header_area .navbar .nav .nav-item .nav-link {
   color: #ffffff; } }
   .header_area .navbar .nav .nav-item:hover .nav-link, .header_area .navbar .nav .nav-item.active .nav-link {
-  color:rgb(21, 190, 0); }
+  color: rgb(205, 214, 236); }
   .header_area .navbar .nav .nav-item.submenu {
   position: relative; }
 
@@ -65,7 +65,7 @@ body{
   border-radius: 0px;
   box-shadow: none;
   margin: 0px;
-  background: rgb(83, 4, 4); }
+  background: #5409e9; }
   
   @media (min-width: 992px) {
   .header_area .navbar .nav .nav-item.submenu ul {
@@ -106,7 +106,7 @@ body{
   
   .header_area .navbar .nav .nav-item.submenu ul .nav-item .nav-link {
   line-height: 45px;
-  color: #167ce9;
+  color: #fff;
   padding: 0px 30px;
   transition: all 150ms linear;
   display: block;
@@ -164,7 +164,7 @@ body{
   position: absolute; }
   
   .header_area .navbar {
-  background: rgb(83, 4, 4); }
+  background: #5409e9; }
   
   .header_top .nav {
   padding: 0px; }
@@ -321,7 +321,7 @@ section header .toggle{
 .content a{
     display: inline-block;
     padding: 10px 20px;
-    background: rgb(48, 0, 0);
+    background: #5409e9;
     color: rgb(4, 82, 199);
     text-decoration: none;
     text-transform: uppercase;
@@ -403,8 +403,8 @@ section header .toggle{
     position: absolute;
     display: inline-block;
     color: #fff;
-    border: 1px solid #167ce9;
-    background: #167ce9;
+    border: 1px solid #fff;
+    background: #fff;
     margin-top: 14px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
@@ -421,7 +421,7 @@ section header .toggle{
   border: 1px solid  yellowgreen; }
 .cta.cta-colored span {
   position: absolute;
-border-color: #167ce9; }
+border-color: #fff; }
 
 
 /*---End 0f landng sectn ---*/
