@@ -50,7 +50,7 @@ class Appointment(View):
 
 @login_required(login_url='MyDoc:login_patient')
 def appointment(request):
-    form = AppointmentForm(request.POST or None)
+    form = AppointmentForm(request.POST or None, instance=request.user)
     if form.is_valid():
         appnt = form.save(commit=False)
         appnt.name = request.POST['name']

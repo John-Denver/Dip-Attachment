@@ -31,6 +31,7 @@
 
 
 </head>
+    <body style=" background: #dbbcf3; color: #333333;">
     <header class="header_area">
   <div class="main_menu">
     <nav class="navbar navbar-expand-lg navbar-light" id="navbar" style="background: #5409e9;">
@@ -78,6 +79,8 @@
   </div>
 </header>
 
+
+
     <div class="container-fluid" style="padding-top: 100px;">
     <div class="page-header" style="background: #ffffff; margin-bottom: 20px;">
             <h2 class="text-center text-primary"> <strong>Messages</strong></h2>
@@ -89,24 +92,20 @@
 
         {% if message %}
             {% for mess in message %}
-    <div class="col-sm-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading active">
-                <h5 class="text-success">From clinician{{ mess.clinician }}</h5>
-                <p>cc: {{ mess.email }}</p>
+<div class="container-fluid">
+        <div class="row">
+            <div class="card col-lg-5">
+                <h6 class="text-success">From: clinician{{ mess.clinician }} <p style="text-align: right; margin-top: -18px;">[ {{ mess.name }} ]</p></h6>
+                <p style="color:#5409e9; margin-top: -18px;">cc: {{ mess.email }}</p>
+                 <p style="margin-top: -16px;">Subject: {{ mess.subject }}</p>
+                <hr style="color:#5409e9;">
+                <div class="card-body">
+                    <h6 style="text-align: right; margin-top: -18px;">Message</h6>
+                    {{ mess.message }}
+                </div>
             </div>
-
-           <div class="member">
-                 <h6>{{ mess.name }}</h6>
-                 <h6>Subject: {{ mess.subject }}</h6>
-                 <h5>Message: {{ mess.message }}</h5>
-
-           </div>
         </div>
-    </div>
-
-
-
+</div>
             {% endfor %}
     {% endif %}
 
@@ -115,5 +114,6 @@
 </div>
 
 {% endblock %}
+</body>
 
 </html>
