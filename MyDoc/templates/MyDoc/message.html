@@ -33,33 +33,40 @@
 
 </head>
 
-    <div class="container-fluid">
-    <div class="row">
-        <h3 class="text-center text-primary">
-            Messages
-            <hr>
-        </h3>
-        {% if message %}
-            {% for mess in message %}
-
-
-        <div class="col-sm-3">
-            <div class="row">
-
-                <div class="member">
-                    <h4>From clinician: {{ mess.clinician }}</h4>
-                    <h4>{{ mess.name }}</h4>
-                    <h5>cc: {{ mess.email }}</h5>
-                    <h5>Subject: {{ mess.subject }}</h5>
-                    <h5>Message: {{ mess.message }}</h5>
-
-                </div>
-            </div>
+    <div class="container-fluid" style="padding-top: 100px;">
+    <div class="page-header" style="background: #ffffff; margin-bottom: 20px;">
+            <h2 class="text-center text-primary"> <strong>Messages</strong></h2>
         </div>
 
-            {% endfor %}
-        {% endif %}
+    <br>
+    <br>
+    <br>
+
+        {% if message %}
+            {% for mess in message %}
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading active">
+                <h5 class="text-success">From clinician{{ mess.clinician }}</h5>
+                <p>cc: {{ mess.email }}</p>
+            </div>
+
+           <div class="member">
+                 <h6>{{ mess.name }}</h6>
+                 <h6>Subject: {{ mess.subject }}</h6>
+                 <h5>Message: {{ mess.message }}</h5>
+
+           </div>
+        </div>
     </div>
+
+
+
+            {% endfor %}
+    {% endif %}
+
+
+       </div>
 </div>
 
 {% endblock %}

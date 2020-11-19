@@ -39,10 +39,10 @@ class Clinician(models.Model):
 
 
 class Medrecs(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="records")
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="records")
     title = models.CharField(max_length=60, null=True)
     clinician = models.ForeignKey(Clinician, on_delete=models.PROTECT)
-    patient = models.OneToOneField(Patient, unique=True, default='Denver', on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     meds = models.TextField()
 
     def __str__(self):
@@ -88,6 +88,7 @@ class Contact(models.Model):
 
 
 class Message(models.Model):
+    to = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="record")
     clinician = models.ForeignKey(Clinician, null=True, on_delete=models.PROTECT)
     name = models.CharField(max_length=40)
     email = models.EmailField()

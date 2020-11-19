@@ -64,7 +64,7 @@ def appointment(request):
 
 
 def message(request):
-    mess = Message.objects.all()
+    mess = Message.objects.all().filter(to=request.user)
     context = {
         'message': mess
     }
