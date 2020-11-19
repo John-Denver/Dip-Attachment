@@ -1,8 +1,4 @@
-{% extends "MyDoc/nav_pat.html" %}
 {% load crispy_forms_filters %}
-{% load static %}
-
-
 {% load static %}
 {% block content %}
 <html lang="en">
@@ -36,15 +32,55 @@
 
 </head>
 <body>
-             <div class="content-section">
-        <form method="POST" enctype="multipart/form-data">
+ <header class="header_area">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar" style="background: #5409e9;">
+      <div class="container" style="background: #5409e9;">
+
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav navbar-left menu_nav">
+            <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:index' %}"><i class="fa fa-home"></i>&nbsp;Home</a></li>
+
+
+              <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:my_profile' %}"><i class="fa fa-user-circle" style="color: #2bff00"></i>&nbsp;Profile</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:message' %}"><i class="fa fa-comments" style="color: #2bff00"></i>&nbsp;Messages</a></li>
+          </ul>
+
+            <ul class="nav navbar-nav navbar-right" style="margin-right: -110px">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'MyDoc:logout_patient' %}">
+                        <i class="fa fa-power-off" style="color: red" aria-hidden="true"></i>&nbsp;Log out
+                    </a>
+                </li>
+                    <img class="rounded-circle account-img" style="height: 30px; width: 35px; margin-left: 100px; margin-top: 6px;"
+                         src="{{ user.patient.image.url }}">
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:login_patient' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Log in
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+
+
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+ <img src="{% static 'MyDoc/image/steth.jpg'%}"  class="bg" alt="">
+
+     <div class="content-section" style="padding-top: 100px; margin-left: 350px;">
+        <form method="POST" enctype="multipart/form-data" style="height: 300px;">
             {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Book Appointment</legend>
+            <fieldset class="form-group col-lg-7">
+                <legend class="border-bottom mb-4" style="background: #5409e9; text-align: center; font-family: 'Bradley Hand ITC';"><strong>Book Appointment</strong></legend>
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-warning" type="submit">Submit Appointment</button>
+                <button class="btn btn-outline-success" type="submit">Submit Appointment</button>
             </div>
         </form>
 
