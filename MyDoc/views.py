@@ -7,7 +7,8 @@ from django.views.generic import CreateView
 from .forms import *
 from .models import *
 
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, admin
+
 
 # Create your views here.
 
@@ -17,10 +18,14 @@ def index(request):
 
     appointment = Appointment.objects.all()
 
+    dct = Doctor.objects.all()
+
     context = {
         'contact': contact,
 
         'appointment': appointment,
+
+        'doctors': dct,
     }
 
     return render(request, 'MyDoc/index.html', context)
@@ -71,8 +76,35 @@ def message(request):
     return render(request, 'MyDoc/message.html', context)
 
 
+def recept(request):
+    mess = Message.objects.all().filter(to=request.user)
+    context = {
+        'message': mess
+    }
+    return render(request, 'MyDoc/recept.html', context)
+
+
+def delete_mess(request, mess_id):
+    mess = Message.objects.get(pk=mess_id)
+    mess.delete()
+    mess = Message.objects.all()
+    return render(request, 'MyDoc/message.html', {'mess': mess})
+
+
 def doctors(request):
-    return render(request, 'MyDoc/doctors.html')
+    dct = Doctor.objects.all()
+    context = {
+        'doctors': dct
+    }
+    return render(request, 'MyDoc/doctors.html', context)
+
+
+def doc_ndex(request):
+    dct = Doctor.objects.all()
+    context = {
+        'doctors': dct
+    }
+    return render(request, 'MyDoc/doc_ndex.html', context)
 
 
 def patient_profile(request, user):
@@ -115,6 +147,11 @@ def detail(request, pat_id):
     return render(request, 'MyDoc/detail_pat.html', {'patient': patient})
 
 
+def med_detal(request):
+    meds = Medrecs.objects.all().filter(user=request.user)
+    return render(request, 'MyDoc/med_users.html', {'meds': meds})
+
+
 def my_profile(request):
     if request.user.is_authenticated:
         meds = Medrecs.objects.all().filter(user=request.user)
@@ -148,12 +185,25 @@ def medrecs(request):
     return render(request, 'MyDoc/Department.html', {'meds': meds})
 
 
+@login_required(login_url='MyDoc:login_admn')
 def all_patients(request):
     patient = Patient.objects.all()
     context = {
         'patient': patient
     }
     return render(request, 'MyDoc/all_patients.html', context)
+
+
+def login_admn(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        admin = authenticate(username=username, password=password)
+        if admin is not None:
+            if admin.is_staff and admin.is_active:
+               login(request, admin)
+            return redirect('MyDoc:all_patients')
+    return render(request, 'MyDoc/sign-in.html')
 
 
 def delete_pat(request, pat_id):
@@ -189,13 +239,9 @@ def login_patient(request, self=None):
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
-            if user.is_active:
-                if user.patient:
-                    login(request, user)
-                    return redirect('MyDoc:my_profile')
-            elif patient.DoesNotExist:
-                return redirect('MyDoc:patient')
-
+            if user.is_active and user.patient:
+                login(request, user)
+                return redirect('MyDoc:my_profile')
     return render(request, 'MyDoc/sign-in.html')
 
 

@@ -353,6 +353,30 @@ section header .toggle{
     transform: scale(0.5);
 }
 
+
+.flex{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+}
+
+.categ{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-thumb {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 100%
+
+}
+
+
 /*------Make an appntment m0dal----*/
 .modal{
   width: 600px;

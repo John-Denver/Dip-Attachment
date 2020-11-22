@@ -1,0 +1,56 @@
+{% load static %}
+
+<html lang="en">
+  <header class="header_area">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar" style="background: #5409e9;">
+      <div class="container" style="background: #5409e9;">
+        
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav navbar-left menu_nav">
+            <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:index' %}"><i class="fa fa-hospital" style="color: #2bff00"></i>&nbsp;Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:all_patients' %}"><i class="fa fa-users" style="color: #2bff00"></i>&nbsp;Patients</a></li>
+            <li class="nav-item submenu dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">Consultations<i class="fa fa-caret-down"></i></a>
+              <ul class="dropdown-menu">
+                <li class="nav-item" style="background: #5409e9;"><a class="nav-link" href="{% url 'MyDoc:index' %}">Consultation &nbsp; <i class="fa fa-blog"></i></a></li>
+                <li class="nav-item" style="background: #5409e9;"><a class="nav-link" href="{% url 'MyDoc:index' %}">Department HODs</a></li>
+              </ul>
+            </li>
+              <li class="nav-item" onclick="openForm()"><a class="nav-link" href="{% url 'MyDoc:appointment' %}" ><i class="fa fa-address-book" style="color: #2bff00" aria-hidden="true"></i>&nbsp;<span>Appointments</span></a></li>
+
+              <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:message' %}"><i class="fa fa-comments" style="color: #2bff00"></i>&nbsp;Messages</a></li>
+               <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:med_detal' %}"><i class="fa fa-thermometer-three-quarters" style="color: #2bff00"></i>&nbsp;Diagnosis</a></li>
+
+         </ul>
+
+            <ul class="nav navbar-nav navbar-right" style="margin-right: -110px">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'MyDoc:logout_patient' %}">
+                        <i class="fa fa-power-off" style="color: red" aria-hidden="true"></i>&nbsp;Log out
+                    </a>
+                </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:message' %}"><i class="fa fa-user" style="color: #2bff00"></i>&nbsp;{{ user.username }}</a></li>
+
+                   {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:login_patient' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Log in
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+
+
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+ <!-- END nav -->
+{% block content %}
+
+{% endblock %}
+</html>
+

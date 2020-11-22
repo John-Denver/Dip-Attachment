@@ -1,11 +1,36 @@
-{% extends 'MyDoc/nav_pat.html' %}
+{% extends 'MyDoc/nav_admn.html' %}
 {% load static %}
 {% block content %}
 <html lang="en">
 <head>
-   <title>{{ patient.username }}'s Records</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'MyDoc/main.css' %}">
+        <title>{{ patient.username }}'s Records</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/index.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/responsive.css' %}" type="text/css">
+
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/open-iconic-bootstrap.min.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
+
+
+
+        <script src="{% static 'MyDoc/js/scrpt.js' %}"></script>
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/ionicons.min.css' %}">
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/icomoon.css' %}">
+
 </head>
+
 <style>
 
 .account-img {
@@ -40,42 +65,40 @@ body {
 </style>
 
 <body>
+<img src="{% static 'MyDoc/image/daan.jpg'%}" style="z-index: -1" class="bg" alt="">
 
-{% if user.is_authenticated %}
 <div class="col-md-7">
-    <div class="content-section">
-    <div class="media">
-         <img class="rounded-circle account-img" src="{{ patient.image.url }}">
-      <div class="media-body">
+    <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
+          <div class="media">
+             <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;" src="{{ patient.image.url }}">
+          <div class="media-body">
 
-            <h2 class="account-heading">{{ patient.username }}</h2>
+            <h2 class="account-heading" style="font-size: 30px; margin-top: -79px;">{{ patient.username }}</h2>
             <p class="text-secondary">{{ patient.email }}</p>
-               <form method="POST" style="height: 55px; ">
-                 {% csrf_token %}
-                  <input type="hidden" name="pat_id" value="{{ pat.id }}">
-               </form>
+
       </div>
     </div>
-    <!-- FORM HERE -->
+
     </div>
 </div>
 
-<!-- The Profile/Status bar-->
- <main role="main" class="container" style="margin-right: -580px; margin-top: -300px">
+<main role="main" class="container" style="margin-right: -580px; margin-top: -280px">
           <div class="row">
               <div class="" style="width: 530px;">
-                <div class="content-section">
+                <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
                   <div class="media">
-                    <img class="rounded-circle account-img" src="{{ patient.image.url }}">
+                    <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;"
+                         src="{{ patient.image.url }}">
                     <div class="media-body" style="margin-top: -60px;">
                         <h2 class="">{{ patient.username }}</h2>
                         <p class="text-secondary">{{ patient.email }}</p>
-                        <a href="{% url 'MyDoc:patient_profile' %}" class="btn btn-outline-info mr-4" >Update information</a>
+                        <a href="{% url 'MyDoc:profile_update' %}" class="btn btn-outline-info mr-4" >Update information</a>
                     </div>
                   </div>
-                  <p class='text-muted'>E-Learning And Professional Networking.
+                  <p class='text-muted'>E-Medcs And Professional Working.
                     <br><br>Profile And state
                     <ul class="list-group">
+                      <li class="list-group-item list-group-item-light">First Name: {{ patient.first_name }} Last Name: {{ patient.last_name }}</li>
                       <li class="list-group-item list-group-item-light">Age: {{ patient.age }}</li>
                       <li class="list-group-item list-group-item-light">Gender: {{ patient.gender }}</li>
                       <li class="list-group-item list-group-item-light">Contact: {{ patient.contact }}</li>
@@ -86,32 +109,41 @@ body {
 
                   </p>
 
-
-
-                </div>
-              </div>
-{% else %}
-
-                <div class="content-section">
-                  <div class="media">
-                    <img class="rounded-circle account-img" src="/media/default.jpg">
-                    <div class="media-body">
-                        <h4 class="">Logged Out</h4>
-                        <p class="text-secondary">Don't have an account? create new account </p>
-                        <a href="{% url 'MyDoc:register_patient' %}" class="btn-outline-info" >Create Account Now</a>
-                        <a href="{% url 'MyDoc:login_patient' %}" class="btn-outline-info" >Login</a>
-
-                    </div>
-                  </div>
-
                 </div>
               </div>
 
-          </div>
+  </div>
+
  </main>
 
-{% endif %}
+ <div class="page-header" style="background: #ffffff; margin-bottom: 20px;">
+            <h1 class="text-center text-primary"> <strong>{{ patient.username }}'s  Medical Records</strong></h1>
+        </div>
 
+    <br>
+    <br>
+    <br>
+<div class="row">
+        {% if meds %}
+            {% for m in meds %}
+        <div class="col-sm-5 card" style="margin-left: 55px; margin-bottom: 15px;">
+            <img class="logo" style="height: 35px; width: 35px; margin-right: 15px;" src="{% static 'MyDoc/image/nurse.JPG' %}">
+                <p style="margin-left: 50px; margin-top: -40px;">St.Denvers Hospital,</p><br>
+                <p style="margin-left: 50px; margin-top: -48px;">Healthcare is our compassion</p>
+                <h6 style="text-align: right; margin-top: -50px;" class="text-success">Doctor:{{ m.clinician }}</h6>
+                <p style="text-align: right; margin-top: -10px;">{{ m.date }}</p>
+            <hr style="margin-top: -10px; outline-width: thick;">
+                <p style="margin-top: -23px;">Subject: {{ m.title }}</p>
+                <div class="panel panel-primary">
+                   <div class="panel-body">
+                        <p>Medication: {{ m.meds }}</p>
+                    </div>
+
+                </div>
+        </div>
+                {% endfor %}
+        {% endif %}
+</div>
 
 </body>
 

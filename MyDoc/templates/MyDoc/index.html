@@ -10,6 +10,12 @@
         <link rel="stylesheet" href="{% static 'MyDoc/css/index.css' %}" type="text/css">
         <link rel="stylesheet" href="{% static 'MyDoc/css/responsive.css' %}" type="text/css">
 
+        <link rel="stylesheet" href="{% static 'MyDoc/css/cntact.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/lightslider.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
+
+        <script type="text/javascript" src="{% static 'MyDoc/js/JQuery3.3.1.js' %}"></script>
+        <script type="text/javascript" src="{% static 'MyDoc/js/lightslider.js' %}"></script>
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'MyDoc/css/open-iconic-bootstrap.min.css' %}">
@@ -20,7 +26,7 @@
         <link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
 
 
-
+        <script src="{% static 'MyDoc/js/script.js' %}"></script>
         <script src="{% static 'MyDoc/js/scrpt.js' %}"></script>
 
         <link rel="stylesheet" href="{% static 'MyDoc/css/animate.css' %}">
@@ -32,8 +38,7 @@
 
 </head>
 
-
-        <section>
+<section>
             <header>
                 <a href="#" class="logo" style="margin-top: 19px; color: #16e932;">My_Doc</a>
                 <div class="toggle"></div>
@@ -54,9 +59,40 @@
             </ul>
 
         </section>
-        <!--End Landng Sect-->
+<!----Departments Shortcut Landing page---->
 
-        <div id="myOverlay" class="overlay">
+             <div class="containerrr">
+		<!--slider------------------->
+		<ul id="autoWidth" class="cs-hidden">
+		<!--1------------------------------>
+    {% if doctors %}
+        {% for dct in doctors %}
+          <li class="item-a">
+              <!--slider-box-->
+                <div class="box">
+                    <p class="marvel">St.Denvers</p>
+                    <!--model-->
+                    <img src="{{ dct.image.url }}" class="model" alt="">
+                    <!--details-->
+
+                    <p class="para" style="font-size: 19px; margin-top: -15px;">Dr.{{ dct.d_name }}</p>
+
+                    <a href="{% url 'MyDoc:doctors' %}">
+                     <button type="button" style="margin-top: -50px">Read Mre</button>
+                    </a>
+                </div>
+          </li>
+             {% endfor %}
+               {% endif %}
+		</ul>
+
+
+
+
+	</div>
+             <!----End of departments Shortcut Landing page---->
+        <!--End Landng Sect-->
+<div id="myOverlay" class="overlay">
              <span class="closebtn" onclick="closeForm()">&times;</span>
                 <form class="modal-content" action="" method="POST" style="width: 600px; margin-left: 390px; top: 65px;">
                     {% csrf_token %}
@@ -97,43 +133,11 @@
         </div>
                 <!---End Appointment Modal-->
 
-
-             <!----Departments Shortcut Landing page---->
-             <div class="deps">
-               <div class="card">
-                 <div class="box">
-                   <div class="content">
-                      <h2>01</h2>
-                      <h3>Cardiology</h3>
-                      <p>This is the Cardiology department card and ts just for teesting this cards</p>
-                      <a href="#">Explore</a>
-                   </div>
-                 </div>
-               </div>
-               <div class="card">
-                <div class="box">
-                  <div class="content">
-                     <h2>02</h2>
-                     <h3>Cardiology</h3>
-                     <p>This is the Cardiology department card and ts just for teesting this cards</p>
-                     <a href="#">Explore</a>
-                  </div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="box">
-                  <div class="content">
-                     <h2>03</h2>
-                     <h3>Cardiology</h3>
-                     <p>This is the Cardiology department card and ts just for teesting this cards</p>
-                     <a href="#">Explore</a>
-                  </div>
-                </div>
-              </div>
-             </div>
-             <!----End of departments Shortcut Landing page---->
+<body>
+<hr>
+<hr>
  {% include 'MyDoc/footer.html' %}
-
+</body>
 </html>
 
 {% endblock %}

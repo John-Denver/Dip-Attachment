@@ -30,6 +30,16 @@ class Department(models.Model):
         return self.d_name
 
 
+class Doctor(models.Model):
+    d_name = models.CharField(max_length=60)
+    image = models.ImageField(default='enrc.jpg', upload_to='profile_pics', blank=True)
+    bio = models.TextField(max_length=150)
+    department = models.ForeignKey(Department, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.d_name
+
+
 class Clinician(models.Model):
     c_name = models.CharField(max_length=60)
     department = models.ForeignKey(Department, on_delete=models.PROTECT)
@@ -43,6 +53,7 @@ class Medrecs(models.Model):
     title = models.CharField(max_length=60, null=True)
     clinician = models.ForeignKey(Clinician, on_delete=models.PROTECT)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    date = models.DateTimeField(default=timezone.now(), null=True)
     meds = models.TextField()
 
     def __str__(self):

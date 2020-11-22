@@ -1,0 +1,59 @@
+{% load static %}
+
+{% block content %}
+
+<!doctype html>
+<html>
+<head>
+   <title>My_Doc</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{% static 'MyDoc/css/cntact.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'MyDoc/css/lightslider.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
+
+    <script type="text/javascript" src="{% static 'MyDoc/js/JQuery3.3.1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'MyDoc/js/lightslider.js' %}"></script>
+
+</head>
+
+
+<body>
+	<div class="containerrr">
+		<!--slider------------------->
+		<ul id="autoWidth" class="cs-hidden">
+		<!--1------------------------------>
+    {% if doctors %}
+        {% for dct in doctors %}
+          <li class="item-a">
+              <!--slider-box-->
+                <div class="box">
+                    <p class="marvel">St.Denvers</p>
+                    <!--model-->
+                    <img src="{{ dct.image.url }}" class="model" alt="">
+                    <!--details-->
+
+                    <p class="para" style="font-size: 19px; margin-top: -15px;">Dr.{{ dct.d_name }}</p>
+
+                    <a href="{% url 'MyDoc:doctors' %}">
+                     <button type="button" style="margin-top: -50px">Read Mre</button>
+                    </a>
+                </div>
+          </li>
+             {% endfor %}
+               {% endif %}
+		</ul>
+
+
+
+
+	</div>
+
+
+<script src="{% static 'MyDoc/js/script.js' %}"></script>
+</body>
+</html>
+
+{% endblock %}

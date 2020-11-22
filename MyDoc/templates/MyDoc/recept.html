@@ -52,8 +52,7 @@
 
               <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:my_profile' %}"><i class="fa fa-user-circle" style="color: #2bff00"></i>&nbsp;Profile</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:message' %}"><i class="fa fa-comments" style="color: #2bff00"></i>&nbsp;Messages</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:recept' %}"><i class="fa-cc-paypal" style="color: #2bff00"></i>&nbsp;Payment Receipts</a></li>
-      </ul>
+          </ul>
 
             <ul class="nav navbar-nav navbar-right" style="margin-right: -110px">
                 {% if user.is_authenticated %}
@@ -79,39 +78,16 @@
   </div>
 </header>
 
-<img src="{% static 'MyDoc/image/daan.jpg'%}" style="z-index: -1" class="bg" alt="">
+<img src="{% static 'MyDoc/image/recept.jpg'%}" style="z-index: -1" class="bg" alt="">
 
 <div class="container-fluid" style="padding-top: 100px;">
         <div class="page-header" style="background: #ffffff; margin-bottom: 20px;">
-            <h2 class="text-center text-primary"> <strong>Messages</strong></h2>
+            <h2 class="text-center text-primary"> <strong>My Receipts</strong></h2>
         </div>
 </div>
     <br>
     <br>
     <br>
-
-    <div class="row">
-        {% if message %}
-            {% for mess in message %}
-
-            <div class="card col-sm-5" style="margin-left: 55px; margin-bottom: 15px;">
-                <h6 class="text-success">From: clinician{{ mess.clinician }} <p style="text-align: right; margin-top: -18px;">[ {{ mess.name }} ]</p></h6>
-                <p style="color:#5409e9; margin-top: -18px;">cc: {{ mess.email }}</p>
-                 <p style="margin-top: -16px;">Subject: {{ mess.subject }}</p>
-                <hr style="color:#5409e9;">
-                <div class="card-body">
-                    <h6 style="margin-top: -23px; margin-left: -25px;">Message: &nbsp; {{ mess.message }}</h6>
-
-                    <a style="list-style-type: none" href="{% url 'MyDoc:delete_mess' mess.id %}">
-                        <i class="fa fa-trash text-danger">Delete</i>
-                    </a>
-                </div>
-            </div>
-
-            {% endfor %}
-    {% endif %}
-</div>
-
 
 {% endblock %}
 </body>
