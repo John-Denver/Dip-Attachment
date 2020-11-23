@@ -40,6 +40,7 @@ urlpatterns = [
     path('patient_profile', views.patient_profile, name='patient_profile'),
     path('medrecs', views.medrecs, name='medrecs'),
 
-    ]
+
+]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

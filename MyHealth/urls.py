@@ -17,6 +17,7 @@ admin.site.login = login_required(admin.site.login)
 urlpatterns = [
     path('admin/', admin.site.urls),
     url('health/', include('MyDoc.urls')),
+    url('the_user/', include('the_user.urls')),
 ]
 
 

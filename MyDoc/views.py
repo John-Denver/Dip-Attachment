@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.views import View
 from django.views.generic import CreateView
@@ -29,6 +30,15 @@ def index(request):
     }
 
     return render(request, 'MyDoc/index.html', context)
+
+
+def doc_ndex(request):
+    dct = Doctor.objects.all()
+    context = {
+        'doctors': dct
+    }
+    return render(request, 'MyDoc/doc_ndex.html', context)
+
 
 """
 class Appointment(View):
@@ -99,14 +109,6 @@ def doctors(request):
     return render(request, 'MyDoc/doctors.html', context)
 
 
-def doc_ndex(request):
-    dct = Doctor.objects.all()
-    context = {
-        'doctors': dct
-    }
-    return render(request, 'MyDoc/doc_ndex.html', context)
-
-
 def patient_profile(request, user):
     form = PatientForm(request.POST or None, request.FILES or None)
     if form.is_valid():
@@ -148,6 +150,11 @@ def detail(request, pat_id):
 
 
 def med_detal(request):
+    meds = Medrecs.objects.all().filter(user=request.user)
+    return render(request, 'MyDoc/med_users.html', {'meds': meds})
+
+
+def my_appnts(request):
     meds = Medrecs.objects.all().filter(user=request.user)
     return render(request, 'MyDoc/med_users.html', {'meds': meds})
 
@@ -261,3 +268,6 @@ def contact(request):
         mes.save()
     form = ContactForm()
     return render(request, 'MyDoc/contact.html', {'form': form})
+
+
+"""On Production Level the user sde"""

@@ -64,11 +64,11 @@
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
               aria-expanded="false">LOGIN<i class="fas fa-hospital-user"></i></a>
                   <ul class="dropdown-menu">
-                      <li  class="nav-item"><a class="nav-link" href="{% url 'MyDoc:register' %}">Login / Register &nbsp;<i class="glyphicon glyphicon-user" aria-hidden="true"></i></a>
+                      <li  class="nav-item"><a class="nav-link" href="{% url 'MyDoc:login_patient' %}">Login&nbsp;<i class="fa fa-user" aria-hidden="true"></i></a>
                       </li>
-                      <li  class="nav-item"><a class="nav-link" href="#"><span class="icon nalika-diamond author-log-ic"></span> Lock</a>
+                      <li  class="nav-item"><a class="nav-link" href="#"><i class="fa fa-lock"></i> Lock</a>
                       </li>
-                      <li  class="nav-item"><a class="nav-link" href="#"><span class="icon nalika-settings author-log-ic"></span> Settings</a>
+                      <li  class="nav-item"><a class="nav-link" href="{% url 'MyDoc:register' %}"><i class="fa-sign-in"></i> Register</a>
                       </li>
                   </ul>
             </li>
