@@ -52,13 +52,6 @@ class AppointmentForm(forms.ModelForm):
         fields = '__all__'
 
 
-class ConsultationForm(forms.ModelForm):
-
-    class Meta:
-        model = Consultation
-        fields = '__all__'
-
-
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact

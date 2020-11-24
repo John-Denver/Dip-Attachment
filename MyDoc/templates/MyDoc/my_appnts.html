@@ -16,18 +16,18 @@
         {% if u_appointment %}
             {% for u_a in u_appointment %}
 
-            <div class="card col-sm-5" style="margin-left: 55px; margin-bottom: 15px;">
-                <h5 class="text-success">Appointment from Dr. {{ u_a.doctor }} </h5>
+            <div class="card col-sm-5" style="margin-left: 55px; margin-bottom: 15px; background-color: #1e1e26">
+                <h6 class="text-success">Appointment from Dr. {{ u_a.doctor }} </h6>
                          <hr>
                 <div class="card-body">
-                    <h5 style="margin-top: -23px; margin-left: -25px;">Date & time: &nbsp; {{ u_a.date }}</h5>
+                    <h6 style="margin-top: -23px; margin-left: -25px; color: red">Date & time: &nbsp; {{ u_a.date }}</h6>
 
                      <a href="{% url 'MyDoc:appnt_detail' u_a.id %}"
-                     class="btn btn-primary btn-sm" role="button">More Details</a>
+                     class="btn btn-outline-info btn-sm" role="button">More Details</a>
 
 
-                    <a style="list-style-type: none" href="{% url 'MyDoc:delete_appnt' u_a.id %}">
-                        <i class="fa fa-trash text-danger">Delete</i>
+                    <a style="list-style-type: none; margin-left: 339px;" href="{% url 'MyDoc:delete_appnt' u_a.id %}">
+                        <i class="fa fa-trash text-danger"></i>
                     </a>
                 </div>
             </div>

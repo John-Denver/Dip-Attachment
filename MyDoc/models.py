@@ -6,7 +6,8 @@ from django.contrib.auth.models import User, AbstractUser
 gender = (('Male', 'Male',),  ('Female', 'Female'), ('Others', 'Others'))
 blood_type = (('A', 'A'), ('A+', 'A+'), ('A-', 'A-'), ('B', 'B'),
               ('B+', 'B+'), ('B-', 'B-'), ('O', 'O'), ('O+', 'O+'), ('O-', 'O-'),)
-consultation_type = (('Online Consultation', 'Online Consultation'),
+consultation_type = (('', ''),
+                     ('Online Consultation', 'Online Consultation'),
                      ('Face-Face Consultation', 'Face-Face Consultation'))
 
 
@@ -93,20 +94,11 @@ class UserAppointment(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="recds")
     patient_name = models.CharField(max_length=60, null=True)
     doctor = models.ForeignKey(Doctor, on_delete=models.PROTECT)
+    consultation_type = models.CharField(max_length=30, blank=True, choices=consultation_type, default='No consultation')
+    explanation = models.TextField(max_length=100, null=True)
     date = models.DateTimeField()
     location = models.CharField(max_length=30, null=True)
     reason = models.TextField()
-
-    def __str__(self):
-        return self.patient_name
-
-
-class Consultation(models.Model):
-    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="cnslt")
-    appointment = models.ForeignKey(UserAppointment, on_delete=models.CASCADE)
-    consultation_type = models.CharField(max_length=30, choices=consultation_type, default='Online Consultation')
-    doctor = models.ForeignKey(Doctor, null=True, on_delete=models.PROTECT)
-    patient_name = models.CharField(max_length=250)
 
     def __str__(self):
         return self.consultation_type + '- with' + self.patient_name

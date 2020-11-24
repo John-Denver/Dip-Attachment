@@ -15,4 +15,3 @@ admin.site.register(Message)
 admin.site.register(Doctor)
 
 admin.site.register(UserAppointment)
-admin.site.register(Consultation)
