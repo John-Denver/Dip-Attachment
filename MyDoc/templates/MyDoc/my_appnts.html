@@ -1,17 +1,49 @@
 {% extends "MyDoc/nav_pat.html" %}
-{% load crispy_forms_filters %}
 {% load static %}
 
-{% load crispy_forms_tags %}
-
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-
 {% block content %}
+
 <body style=" background: #f7f6f8; color: #333333;">
-<img src="{% static 'MyDoc/image/recept.jpg'%}" style="z-index: -1" class="bg" alt="">
+<img src="{% static 'MyDoc/image/martha.jpg'%}" style="z-index: -1" class="bg" alt="">
+
+<div class="container-fluid" style="padding-top: 100px;">
+        <div class="page-header" style="background: #ffffff; margin-bottom: 20px;">
+            <h2 class="text-center text-primary"> <strong>My Appointments</strong></h2>
+        </div>
+</div>
+    <br>
+     <div class="row">
+        {% if u_appointment %}
+            {% for u_a in u_appointment %}
+
+            <div class="card col-sm-5" style="margin-left: 55px; margin-bottom: 15px;">
+                <h5 class="text-success">Appointment from Dr. {{ u_a.doctor }} </h5>
+                         <hr>
+                <div class="card-body">
+                    <h5 style="margin-top: -23px; margin-left: -25px;">Date & time: &nbsp; {{ u_a.date }}</h5>
+
+                     <a href="{% url 'MyDoc:appnt_detail' u_a.id %}"
+                     class="btn btn-primary btn-sm" role="button">More Details</a>
+
+
+                    <a style="list-style-type: none" href="{% url 'MyDoc:delete_appnt' u_a.id %}">
+                        <i class="fa fa-trash text-danger">Delete</i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+
+            <div class="card col-sm-6" style="margin-left: 300px; margin-top: 180px; background-color: #1e1e26">
+                <p class="text-danger" style="font-size: 35px; font-family: 'poppins', 'Sans-Serif',fantasy">{{ user.username }}, You have no pending appointments.
+                </p>
+            </div>
+
+    {% endif %}
+</div>
+
+</body>
+
+{% endblock %}
+

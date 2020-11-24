@@ -1,0 +1,24 @@
+{% extends "MyDoc/nav_pat.html" %}
+{% load static %}
+
+<body>
+{% block content %}
+<img src="{% static 'MyDoc/image/daan.jpg'%}" style="z-index: -1" class="bg" alt="">
+
+<div class="col-md-6">
+    <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
+          <div class="media">
+            <div class="media-body">
+
+            <h6 class="account-heading" style="font-size: 18px; color: #6f42c1; margin-top: -79px;">With Dr.{{ u_appointment.doctor }}</h6>
+                <hr>
+                <p class="text-secondary">Date_time {{ u_appointment.date }}<p>{{ u_appointment.location }}</p></p>
+                <p class="text-secondary">Reason-: {{ u_appointment.reason }}</p>
+
+      </div>
+    </div>
+
+    </div>
+</div>
+
+{% endblock %}

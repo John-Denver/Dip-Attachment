@@ -78,6 +78,26 @@ def appointment(request):
     return render(request, 'MyDoc/appointment.html', {'form': form})
 
 
+def appnt_detail(request, appointment_id):
+    u_appointment = get_object_or_404(UserAppointment, pk=appointment_id)
+    return render(request, 'MyDoc/appnt_detail.html', {'u_appointment': u_appointment})
+
+
+def u_appointment(request):
+    u_appointment = UserAppointment.objects.all().filter(user=request.user)
+    context = {
+        'u_appointment': u_appointment
+    }
+    return render(request, 'MyDoc/my_appnts.html', context)
+
+
+def delete_appnt(request, appointment_id):
+    u_a = UserAppointment.objects.get(pk=appointment_id)
+    u_a.delete()
+    u_a = UserAppointment.objects.all()
+    return render(request, 'MyDoc/my_appnts.html', {'u_a': u_a})
+
+
 def message(request):
     mess = Message.objects.all().filter(to=request.user)
     context = {
@@ -254,7 +274,7 @@ def login_patient(request, self=None):
 
 def logout_patient(request):
     logout(request)
-    return redirect('MyDoc:login_patient')
+    return redirect('MyDoc:index')
 
 
 def contact(request):

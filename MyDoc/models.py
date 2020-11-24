@@ -91,13 +91,14 @@ class Appointment(models.Model):
 
 class UserAppointment(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="recds")
+    patient_name = models.CharField(max_length=60, null=True)
     doctor = models.ForeignKey(Doctor, on_delete=models.PROTECT)
     date = models.DateTimeField()
     location = models.CharField(max_length=30, null=True)
     reason = models.TextField()
 
     def __str__(self):
-        return self.user
+        return self.patient_name
 
 
 class Consultation(models.Model):

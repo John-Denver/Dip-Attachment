@@ -109,6 +109,12 @@
             </div>
 
             {% endfor %}
+             {% else %}
+
+            <div class="card col-sm-6" style="margin-left: 300px; margin-top: 180px;">
+                <p class="text-danger" style="font-size: 30px; font-family: 'poppins', 'Sans-Serif',fantasy">{{ user.username }}, You have no Messages currently
+                </p>
+            </div>
     {% endif %}
 </div>
 
