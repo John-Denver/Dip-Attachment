@@ -32,6 +32,66 @@
 
 </head>
 <body>
+
+
+<header class="header_area">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+      <div class="container">
+
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav menu_nav ml-auto">
+            <li class="nav-item active"><a class="nav-link" href="{% url 'MyDoc:index' %}"><i class="fa fa-home"></i>&nbsp;Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:index' %}">Department<span class="glyphicon glyphicon-person"></span></a></li>
+            <li class="nav-item submenu dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">Contact Us<i class="fa fa-caret-down"></i></a>
+              <ul class="dropdown-menu">
+                <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:index' %}">About &nbsp; <i class="fas fa-clipboard-check"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:contact' %}">Suggestions &nbsp;<i class="fa fa-phone"></i> </a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:doctors' %}">Doctors</a></li>
+              </ul>
+            </li>
+            <li class="nav-item submenu dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">Blog<i class="fa fa-caret-down"></i></a>
+              <ul class="dropdown-menu">
+                <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:index' %}">Blog&nbsp; <i class="fa fa-blog"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:index' %}">Blog Details</a></li>
+              </ul>
+            </li>
+              <li class="nav-item" onclick="openForm()"><a class="nav-link" href="{% url 'MyDoc:appointment' %}"  data-toggle="modal" data-target="#modalAppointment"><span>Make an Appointment</span></a></li>
+
+             {% if user.is_authenticated %}
+                <li class="nav-item" style="margin-left: 900px; margin-top: -43px;">
+                    <a class="nav-link" href="{% url 'MyDoc:logout_patient' %}">
+                        <i class="fa fa-power-off" style="color: red" aria-hidden="true"></i>&nbsp;Log out
+                    </a>
+                </li>
+                    <li class="nav-item" title="My Profile" style="margin-left: 1000px; margin-top: -43px;"><a class="nav-link" href="{% url 'MyDoc:my_profile' %}"><i class="fa fa-user" style="color: #2bff00"></i>&nbsp;{{ user.username }}</a></li>
+
+                   {% else %}
+            <li class="nav-item submenu dropdown" style="margin-left: 1150px; margin-top: -43px;" >
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">LOGIN<i class="fas fa-hospital-user"></i></a>
+                  <ul class="dropdown-menu">
+                      <li  class="nav-item"><a class="nav-link" href="{% url 'MyDoc:login_patient' %}">Login&nbsp;<i class="fa fa-user" aria-hidden="true"></i></a>
+                      </li>
+                      <li  class="nav-item"><a class="nav-link" href="#"><i class="fa fa-lock"></i> Lock</a>
+                      </li>
+                      <li  class="nav-item"><a class="nav-link" href="{% url 'MyDoc:register' %}"><i class="fa-sign-in"></i> Register</a>
+                      </li>
+                  </ul>
+               {% endif %}
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
             <!-----Appointment Modal Overlay-->
         <div id="myOverlay" class="overlay">
           <span class="closebtn" onclick="closeForm()">&times;</span>

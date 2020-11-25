@@ -16,13 +16,17 @@ body{
     font-size: 16px;
     color: #333;
     overflow: auto;
-    scroll-margin-top: 69x;
-    scrollbar-color: rgb(83, 4, 4);
     height: 100vh;
     overflow-x: hidden;
 
 
 }
+
+.card-stats{
+    background-color: #5409e9;
+    height: 60px;
+}
+
 
 /*The Navbar*/
 .header_area {
