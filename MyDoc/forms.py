@@ -1,27 +1,15 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.db import transaction
 
 from . models import *
 
 
-"""class RegisterForm(forms.ModelForm):
-    name = forms.CharField(max_length=60)
-    gender = forms.CharField(max_length=60)
+class UserForm(UserCreationForm):
     email = forms.EmailField()
-    number = forms.NumberInput()
-    password = forms.CharField(widget=forms.PasswordInput)
-
-    class Meta:
-        model = User """
-
-
-class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
 
 class PatientForm(forms.ModelForm):
@@ -56,5 +44,3 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = '__all__'
-
-

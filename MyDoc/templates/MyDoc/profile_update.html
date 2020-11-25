@@ -1,8 +1,72 @@
-{% extends "MyDoc/nav_pat.html" %}
 {% load crispy_forms_filters %}
 {% load static %}
 
-{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+        <title>My_Doc</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/index.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/responsive.css' %}" type="text/css">
+
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/open-iconic-bootstrap.min.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
+
+
+
+        <script src="{% static 'MyDoc/js/scrpt.js' %}"></script>
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/ionicons.min.css' %}">
+
+        <link rel="stylesheet" href="{% static 'MyDoc/css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/icomoon.css' %}">
+
+
+</head>
+  <header class="header_area">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar" style="background: #5409e9;">
+      <div class="container" style="background: #5409e9;">
+
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav navbar-left menu_nav" style="">
+            <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:index' %}"><i class="fa fa-home"></i>&nbsp;Home</a></li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" style="margin-right: -110px">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'MyDoc:logout_patient' %}">
+                        <i class="fa fa-power-off" style="color: red" aria-hidden="true"></i>&nbsp;Log out
+                    </a>
+                </li>
+                     <li class="nav-item" title="My Profile" style="margin-left: 900px; "><a class="nav-link" href="{% url 'MyDoc:my_profile' %}"><i class="fa fa-user" style="color: #2bff00"></i>&nbsp;{{ user.username }}</a></li>
+
+                    <img class="rounded-circle account-img" style="height: 30px; width: 35px; margin-left: 1130px; margin-top: -35px;"
+                         src="{{ user.patient.image.url }}">
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:login_patient' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Log in
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+
+
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
 
 {% if messages %}
 <ul class="messages">
@@ -13,9 +77,9 @@
 {% endif %}
 
 {% block content %}
-<body style=" background: #f7f6f8; color: #333333;">
+<body style=" background: #0d0513; color: #333333;">
 
-<div class="col-md-7">
+<div class="col-md-7" style="margin-left: 190px;">
     <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
           <div class="media">
              <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;" src="{{ user.patient.image.url }}">

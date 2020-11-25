@@ -72,20 +72,25 @@
 
  <img src="{% static 'MyDoc/image/steth.jpg'%}" style="z-index: -1" class="bg" alt="">
 
-     <div class="content-section" style="padding-top: 100px; margin-left: 350px;">
-        <form method="POST" enctype="multipart/form-data" style="background: #ba9efd; width: 500px; padding-left: 15px;">
-            {% csrf_token %}
-            <fieldset class="form-group col-lg-12" >
-                <legend class="border-bottom mb-4" style="background: #5409e9; text-align: center; font-family: 'Bradley Hand ITC';"><strong>Book Appointment</strong></legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-success" type="submit">Submit Appointment</button>
-            </div>
-        </form>
+   <div class="col-md-7" style="margin-left: 190px;">
+        <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
+            <form method="POST" enctype="multipart/form-data" style="margin-top: -90px;">
+                {% csrf_token %}
+                <fieldset class="form-group col-lg-offset-10" >
+                    <legend class="border-bottom mb-4" style="background: #5409e9; text-align: center; font-family: 'Bradley Hand ITC';"><strong>Book Appointment</strong></legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-success" type="submit">Submit Appointment</button>
+                </div>
+            </form>
 
-    </div>
+        </div>
+   </div>
 </body>
 </html>
+
+
+ {% include 'MyDoc/footer.html' %}
 {% endblock %}
 

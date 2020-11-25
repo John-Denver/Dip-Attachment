@@ -10,8 +10,11 @@
           <div class="media">
             <div class="media-body">
 
-            <p class="account-heading" style="font-size: 18px; color: #6f42c1; margin-top: -79px;">With Dr.{{ u_appointment.doctor }},&nbsp; &nbsp; &nbsp;
-                {{ u_appointment.consultation_type }}</p>
+            <p class="account-heading" style="font-size: 18px; color: #6f42c1; margin-top: -79px;">With Dr.{{ u_appointment.doctor }},&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <a href="contact.html">
+                {{ u_appointment.consultation_type }}
+                </a>
+            </p>
                 <p>{{ u_appointment.explanation }}</p>
                 <hr>
                 <p class="text-secondary">Date_time-:  {{ u_appointment.date }}

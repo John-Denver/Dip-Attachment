@@ -3,25 +3,31 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-    <div class="content-section">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group col-lg-7">
-                <legend class="border-bottom mb-4">Patient</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Submit</button>
+
+<body style=" background: #0d0513; color: #333333;">
+    <div class="col-lg-7" style="margin-left: 300px; margin-top: 115px;">
+        <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
+            <form method="POST" enctype="multipart/form-data" style="margin-top: -60px;">
+                <p class="text-success text-capitalize ">Complete patient registration by filling the form</p>
+                {% csrf_token %}
+                <fieldset class="form-group col-lg-offset-10">
+                    <legend class="border-bottom mb-4">Patient</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Submit</button>
+                </div>
+            </form>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Already Have An Account? <a class="ml-5" href="{% url 'MyDoc:login_patient' %}">Sign In</a>
+                </small>
             </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Already Have An Account? <a class="ml-2" href="">Sign In</a>
-            </small>
+
         </div>
-
     </div>
+</body>
 
 
-
+ {% include 'MyDoc/footer.html' %}
 {% endblock content %}

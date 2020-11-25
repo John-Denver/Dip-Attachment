@@ -22,7 +22,7 @@
              <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;" src="{{ user.patient.image.url }}">
           <div class="media-body">
 
-            <h2 class="account-heading" style="font-size: 30px; margin-top: -79px;">{{ user.username }}</h2>
+            <h2 class="account-heading" style="font-size: 30px; color: #60ee42; margin-top: -79px;">{{ user.username }}</h2>
             <p class="text-secondary">{{ user.email }}</p>
 
       </div>
@@ -52,8 +52,8 @@
                       <li class="list-group-item list-group-item-light">Gender: {{ user.patient.gender }}</li>
                       <li class="list-group-item list-group-item-light">Contact: {{ user.patient.contact }}</li>
                       <li class="list-group-item list-group-item-light">blood_type: {{ user.patient.blood_type }}</li>
-                      <li class="list-group-item list-group-item-light">Last Checkup: {{ user.patient.Cough }}</li>
-                      <li class="list-group-item list-group-item-light">Next Checkup: {{ user.patient.Cough }}</li>
+                      <li class="list-group-item list-group-item-light">Last Checkup: {{ user.patient.last_check }}</li>
+                      <li class="list-group-item list-group-item-light" style="color: #1c7430">Next Checkup: {{ user.patient.next_check }}</li>
                     </ul>
 
                   </p>

@@ -32,6 +32,8 @@
 
 </head>
 
+<img src="{% static 'MyDoc/image/plss.jpg'%}" style="z-index: -1" class="bg" alt="">
+
   <div class="container-fluid" style="padding-top: 100px">
             <div class="row">
                 <h3 class="text-primary" style="margin-left: 550px;">
@@ -53,7 +55,7 @@
                             <a style="margin-left: 219px; width: 39px; margin-top: 10px;" href="{% url 'MyDoc:delete_pat' pat.id %}">
                                 <i class="fa fa-trash text-danger">Delete</i>
                              </a>
-                            <div style="margin-top: -10px;">Name: {{ pat.username }}</div>
+                            <div style="margin-top: -10px;">Name: {{ pat.user }}</div>
                             <div class="text-success" style="margin-top: 1px;">Blood type: {{ pat.blood_type }}&nbsp;
 
                             </div>

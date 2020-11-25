@@ -40,32 +40,9 @@ def doc_ndex(request):
     return render(request, 'MyDoc/doc_ndex.html', context)
 
 
-"""
-class Appointment(View):
-    @staticmethod
-    def get(request, *args, **kwargs):
-        return render(request, 'MyDoc/appointment.html')
-
-    def post(self, request, *args, **kwargs):
-        form = AppointmentForm(request.POST or None, request.FILES or None)
-        if form.is_valid():
-            return redirect('MyDoc:index')
-        appnt = form.save(commit=False)
-        appnt.name = request.POST['name']
-        appnt.id_number = request.POST['id_number']
-        appnt.number = request.POST['number']
-        appnt.email = request.POST['email']
-        appnt.message = request.POST['message']
-        appnt.image = request.FILES['image']
-        appnt.save()
-        form = AppointmentForm()
-
-        return render(request, 'MyDoc/index.html', {'form': form})"""
-
-
 @login_required(login_url='MyDoc:login_patient')
 def appointment(request):
-    form = AppointmentForm(request.POST or None, instance=request.user)
+    form = AppointmentForm(request.POST or None)
     if form.is_valid():
         appnt = form.save(commit=False)
         appnt.name = request.POST['name']
@@ -160,6 +137,7 @@ def patient(request):
         user.blood_type = request.POST['blood_type']
         user.user = request.user
         user.save()
+        return redirect('MyDoc:my_profile')
     form = PatientForm()
     return render(request, 'MyDoc/patient.html', {'form': form})
 
@@ -248,15 +226,15 @@ def register_patient(request):
         first_name = form.cleaned_data['first_name']
         last_name = form.cleaned_data['last_name']
         email = form.cleaned_data['email']
-        password = form.cleaned_data['password']
-        user.set_password(password)
+        password1 = form.cleaned_data['password1']
+        user.set_password(password1)
         user.save()
-        user = authenticate(username=username, password=password, first_name=first_name, last_name=last_name,
+        user = authenticate(username=username, password=password1, first_name=first_name, last_name=last_name,
                             email=email)
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect('MyDoc:login_patient')
+                return redirect('MyDoc:patient')
     return render(request, 'MyDoc/register.html', {'form': form})
 
 

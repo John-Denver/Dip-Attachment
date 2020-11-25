@@ -3,7 +3,7 @@
 {% block content %}
 <html lang="en">
 <head>
-        <title>{{ patient.username }}'s Records</title>
+        <title>{{ patient.user }}'s Records</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -73,7 +73,7 @@ body {
              <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;" src="{{ patient.image.url }}">
           <div class="media-body">
 
-            <h2 class="account-heading" style="font-size: 30px; margin-top: -79px;">{{ patient.username }}</h2>
+            <h2 class="account-heading" style="font-size: 30px; margin-top: -79px;">{{ patient.user }}</h2>
             <p class="text-secondary">{{ patient.email }}</p>
 
       </div>
@@ -90,7 +90,7 @@ body {
                     <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;"
                          src="{{ patient.image.url }}">
                     <div class="media-body" style="margin-top: -60px;">
-                        <h2 class="">{{ patient.username }}</h2>
+                        <h2 class="">{{ patient.user }}</h2>
                         <p class="text-secondary">{{ patient.email }}</p>
                         <a href="{% url 'MyDoc:profile_update' %}" class="btn btn-outline-info mr-4" >Update information</a>
                     </div>
@@ -98,13 +98,13 @@ body {
                   <p class='text-muted'>E-Medcs And Professional Working.
                     <br><br>Profile And state
                     <ul class="list-group">
-                      <li class="list-group-item list-group-item-light">First Name: {{ patient.first_name }} Last Name: {{ patient.last_name }}</li>
+                      <li class="list-group-item list-group-item-light">First Name: {{ user.patient.first_name }} Last Name: {{ user.patient.last_name }}</li>
                       <li class="list-group-item list-group-item-light">Age: {{ patient.age }}</li>
                       <li class="list-group-item list-group-item-light">Gender: {{ patient.gender }}</li>
                       <li class="list-group-item list-group-item-light">Contact: {{ patient.contact }}</li>
                       <li class="list-group-item list-group-item-light">blood_type: {{ patient.blood_type }}</li>
-                      <li class="list-group-item list-group-item-light">Last Checkup: {{ patient.Cough }}</li>
-                      <li class="list-group-item list-group-item-light">Next Checkup: {{ patient.Cough }}</li>
+                      <li class="list-group-item list-group-item-light" style="color: red;">Last Checkup: {{ patient.last_check }}</li>
+                      <li class="list-group-item list-group-item-light" style="color: #1c7430;">Next Checkup: {{ patient.next_check }}</li>
                     </ul>
 
                   </p>
@@ -117,7 +117,7 @@ body {
  </main>
 
  <div class="page-header" style="background: #ffffff; margin-bottom: 20px;">
-            <h1 class="text-center text-primary"> <strong>{{ patient.username }}'s  Medical Records</strong></h1>
+            <h1 class="text-center text-primary"> <strong>{{ patient.user }}'s  Medical Records</strong></h1>
         </div>
 
     <br>
