@@ -61,13 +61,15 @@
 
             <ul class="nav navbar-nav navbar-right" style="margin-right: -110px">
                 {% if user.is_authenticated %}
-                <li class="nav-item">
+
+                    <img class="rounded-circle account-img" style="height: 30px; width: 35px; margin-left: 100px; margin-top: 6px;"
+                         src="{{ user.patient.image.url }}">
+                     <li class="nav-item" title="My Profile" ><a class="nav-link" href="{% url 'MyDoc:my_profile' %}"><i class="fa fa-user" style="color: #2bff00"></i>&nbsp;{{ user.username }}</a></li>
+<li class="nav-item">
                     <a class="nav-link" href="{% url 'MyDoc:logout_patient' %}">
                         <i class="fa fa-power-off" style="color: red" aria-hidden="true"></i>&nbsp;Log out
                     </a>
                 </li>
-                    <img class="rounded-circle account-img" style="height: 30px; width: 35px; margin-left: 100px; margin-top: 6px;"
-                         src="{{ user.patient.image.url }}">
                 {% else %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:login_patient' %}">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Log in

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
 from django.conf.urls import static
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -18,6 +19,15 @@ from django.template.context_processors import static
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.WARNING: 'alert-warning',
+    messages.SUCCESS: 'alert-success',
+    messages.ERROR: 'alert-danger',
+
+}
 
 
 # Quick-start development settings - unsuitable for production

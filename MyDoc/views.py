@@ -141,6 +141,7 @@ def patient(request):
         user.health_insurance = request.POST['health_insurance']
         user.user = request.user
         user.save()
+        messages.success(request, f'Welcome to Denvers Hospital')
         return redirect('MyDoc:my_profile')
     form = PatientForm()
     return render(request, 'MyDoc/patient.html', {'form': form})
@@ -249,8 +250,12 @@ def login_patient(request, self=None):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active and user.patient:
+                messages.success(request, f'Login Successful. You are logged in as {user.username}')
                 login(request, user)
                 return redirect('MyDoc:my_profile')
+            else:
+                messages.warning(request, 'INVALID LOGIN TRY AGAIN!!')
+                return redirect('MyDoc:login_patient')
     return render(request, 'MyDoc/sign-in.html')
 
 

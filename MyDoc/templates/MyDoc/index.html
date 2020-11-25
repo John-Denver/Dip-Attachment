@@ -37,7 +37,7 @@
 
 
 </head>
-<body style="background-color: #F3F3F3">
+<body style="background-color: #0d0513;">
 <section>
             <header>
                 <a href="#" class="logo" style="margin-top: 19px; color: #16e932;">My_Doc</a>
@@ -74,7 +74,7 @@
                     <p style="margin-top: -15px;"><strong>Appointment Type :-</strong>In person; appointment required</p>
                  </div>
             </div>
-                <a href="" class="btn btn-outline-info">Make Appointment</a>
+                <a href="{% url 'MyDoc:appointment' %}" class="btn btn-outline-info">Make Appointment</a>
 
         </div>
     </div>
@@ -91,7 +91,7 @@
                     <p style="margin-top: -15px;"><strong>Appointment Type :-</strong>Online reservation or walk-in</p>
                  </div>
             </div>
-            <a href="" class="btn btn-outline-info">Make Appointment</a>
+            <a href="{% url 'MyDoc:appointment' %}" class="btn btn-outline-warning">Make Appointment</a>
 
         </div>
     </div>
@@ -108,7 +108,7 @@
                     <p style="margin-top: -15px;"><strong>Appointment Type :-</strong>Walk-in or call 6126 for ambulance</p>
                  </div>
             </div>
-            <a href="" class="btn btn-outline-dark" style="margin-bottom: -35px;">Make Appointment</a>
+            <a href="{% url 'MyDoc:appointment' %}" class="btn btn-outline-dark" style="margin-bottom: -35px;">Make Appointment</a>
 
         </div>
     </div>
@@ -125,7 +125,7 @@
                     <p style="margin-top: -15px;"><strong>Appointment Type :-</strong>Electronic/internet access</p>
                  </div>
             </div>
-            <a href="" class="btn btn-outline-success " style="margin-bottom: 5px;">Make Appointment</a>
+            <a href="{% url 'MyDoc:appointment' %}" class="btn btn-outline-success " style="margin-bottom: 5px;">Make Appointment</a>
 
         </div>
     </div>
