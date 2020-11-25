@@ -22,7 +22,7 @@
              <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;" src="{{ user.patient.image.url }}">
           <div class="media-body">
 
-            <h2 class="account-heading" style="font-size: 30px; color: #60ee42; margin-top: -79px;">{{ user.username }}</h2>
+            <h2 class="account-heading" style="font-size: 30px; margin-top: -79px;">{{ user.username }}</h2>
             <p class="text-secondary">{{ user.email }}</p>
 
       </div>
@@ -31,7 +31,28 @@
     </div>
 </div>
 
-<main role="main" class="container" style="margin-right: -580px; margin-top: -280px">
+<div class="col-md-7">
+    <div class="content-section" style="background: #ffffff; padding: 28px 20px 15px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 19px; margin-bottom: 20px;">
+          <div class="media">
+              <p class='text-muted'>E-Medcs And Professional Working.
+                <br>Profile And state
+              </p>
+          </div>
+              <hr>
+              <p>
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-light">Full Name: {{ user.first_name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ user.last_name }}</li>
+                  <li class="list-group-item list-group-item-light col-md-12">Date of Birth: {{ user.patient.birth_date }}</li>
+                  <li class="list-group-item list-group-item-light col-md-12">Languages: {{ user.patient.languages }}</li>
+                  <li class="list-group-item list-group-item-light col-md-12">Health insurances: {{ user.patient.health_insurance }}</li>
+                  <li class="list-group-item list-group-item-light col-md-12">Residence: {{ user.patient.residence }}</li>
+                </ul>
+              </p>
+          </div>
+</div>
+
+
+<main role="main" class="container" style="margin-right: -580px; margin-top: -695px">
           <div class="row">
               <div class="" style="width: 530px;">
                 <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
@@ -47,12 +68,11 @@
                   <p class='text-muted'>E-Medcs And Professional Working.
                     <br><br>Profile And state
                     <ul class="list-group">
-                      <li class="list-group-item list-group-item-light">First Name: {{ user.patient.first_name }} Last Name: {{ user.patient.last_name }}</li>
                       <li class="list-group-item list-group-item-light">Age: {{ user.patient.age }}</li>
                       <li class="list-group-item list-group-item-light">Gender: {{ user.patient.gender }}</li>
                       <li class="list-group-item list-group-item-light">Contact: {{ user.patient.contact }}</li>
-                      <li class="list-group-item list-group-item-light">blood_type: {{ user.patient.blood_type }}</li>
-                      <li class="list-group-item list-group-item-light">Last Checkup: {{ user.patient.last_check }}</li>
+                      <li class="list-group-item list-group-item-light" style="color: #0b45d9">blood_type: {{ user.patient.blood_type }}</li>
+                      <li class="list-group-item list-group-item-light" style="color: red">Last Checkup: {{ user.patient.last_check }}</li>
                       <li class="list-group-item list-group-item-light" style="color: #1c7430">Next Checkup: {{ user.patient.next_check }}</li>
                     </ul>
 
@@ -65,7 +85,7 @@
 
  </main>
 
- <div class="page-header" style="background: #ffffff; margin-bottom: 20px;">
+ <div class="page-header" style="background: #0b0b0b; margin-bottom: 20px;">
             <h1 class="text-center text-primary"> <strong>Medical Records</strong></h1>
         </div>
 

@@ -135,6 +135,10 @@ def patient(request):
         user.email = request.POST['email']
         user.contact = request.POST['contact']
         user.blood_type = request.POST['blood_type']
+        user.birth_date = request.POST['birth_date']
+        user.residence = request.POST['residence']
+        user.languages = request.POST['languages']
+        user.health_insurance = request.POST['health_insurance']
         user.user = request.user
         user.save()
         return redirect('MyDoc:my_profile')

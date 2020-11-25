@@ -10,6 +10,9 @@ blood_type = (('A', 'A'), ('A+', 'A+'), ('A-', 'A-'), ('B', 'B'),
 consultation_type = (('', ''),
                      ('Online Consultation', 'Online Consultation'),
                      ('Face-Face Consultation', 'Face-Face Consultation'))
+insurance = (('NHIF', 'NHIF'),
+             ('Denver_Insurance', 'Denver_Insurance'),
+             ('My_Doc', 'My_Doc'))
 
 
 class Patient(models.Model):
@@ -20,7 +23,11 @@ class Patient(models.Model):
     gender = models.CharField(max_length=6, choices=gender, default='Male')
     email = models.EmailField(blank=True)
     contact = models.IntegerField()
+    birth_date = models.DateField(default=django.utils.timezone.now)
+    languages = models.CharField(max_length=100, default='English')
+    residence = models.CharField(max_length=100, default='Nairobi/Juja')
     blood_type = models.CharField(max_length=5, choices=blood_type, default='O')
+    health_insurance = models.CharField(max_length=100, choices=insurance, blank=True, default='NHIF')
     last_check = models.DateField(blank=True, default=django.utils.timezone.now)
     next_check = models.DateField(blank=True, default=django.utils.timezone.now)
 
