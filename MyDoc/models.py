@@ -14,6 +14,10 @@ insurance = (('NHIF', 'NHIF'),
              ('Denver_Insurance', 'Denver_Insurance'),
              ('My_Doc', 'My_Doc'))
 
+payment_mode = (('M-Pesa', 'M-Pesa'),
+                ('Cash', 'Cash'),
+                ('Credit Card', 'Credit Card'))
+
 
 class Patient(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
@@ -123,3 +127,15 @@ class Message(models.Model):
 
     def __str__(self):
         return self.subject
+
+
+class Recept(models.Model):
+    date = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recpts")
+    patient_name = models.CharField(max_length=100)
+    amount_payed = models.CharField(max_length=300)
+    payment_mode = models.CharField(max_length=30, choices=payment_mode)
+    payed_for = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.patient_name

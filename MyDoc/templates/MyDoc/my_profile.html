@@ -4,18 +4,26 @@
 
 {% load crispy_forms_tags %}
 
-
 {% block content %}
 
 
 <body>
  {% if messages %}
-<ul class="messages" style="margin-top: 80px; margin-bottom: -60px; padding: 6px; width: 90%; margin-left: 60px;">
+<ul class="messages" id="msg" style="margin-top: 80px; margin-bottom: -60px; width: 90%; margin-left: 60px;">
     {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}" style="list-style: none" {% endif %}>{{ message }}</li>
+    <li{% if message.tags %} class="{{ message.tags }}" id="msg"  style="list-style: none; padding: 10px;" {% endif %}>{{ message }}</li>
     {% endfor %}
 </ul>
 {% endif %}
+<script>
+    setTimeout(function (){
+        if ($('#msg').length > 0){
+            $('#msg').remove();
+        }
+    }, 3000)
+</script>
+
+<img src="{% static 'MyDoc/image/daan.jpg'%}" style="z-index: -1" class="bg" alt="">
 <div class="col-md-7">
     <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
           <div class="media">

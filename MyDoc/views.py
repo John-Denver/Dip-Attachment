@@ -40,6 +40,10 @@ def doc_ndex(request):
     return render(request, 'MyDoc/doc_ndex.html', context)
 
 
+def consultation(request):
+    return render(request, 'MyDoc/consultation.html')
+
+
 @login_required(login_url='MyDoc:login_patient')
 def appointment(request):
     form = AppointmentForm(request.POST or None)
@@ -51,6 +55,8 @@ def appointment(request):
         appnt.email = request.POST['email']
         appnt.message = request.POST['message']
         appnt.save()
+        messages.success(request, f'Your appointment has been booked. Check your messages '
+                                  f'tab after a while for instructions')
     form = AppointmentForm()
     return render(request, 'MyDoc/appointment.html', {'form': form})
 
@@ -71,6 +77,7 @@ def u_appointment(request):
 def delete_appnt(request, appointment_id):
     u_a = UserAppointment.objects.get(pk=appointment_id)
     u_a.delete()
+    messages.warning(request, f'Your appointment was deleted')
     u_a = UserAppointment.objects.all()
     return render(request, 'MyDoc/my_appnts.html', {'u_a': u_a})
 
@@ -84,9 +91,9 @@ def message(request):
 
 
 def recept(request):
-    mess = Message.objects.all().filter(to=request.user)
+    recept = Recept.objects.all().filter(user=request.user)
     context = {
-        'message': mess
+        'recept': recept
     }
     return render(request, 'MyDoc/recept.html', context)
 
@@ -243,7 +250,7 @@ def register_patient(request):
     return render(request, 'MyDoc/register.html', {'form': form})
 
 
-def login_patient(request, self=None):
+def login_patient(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -253,9 +260,9 @@ def login_patient(request, self=None):
                 messages.success(request, f'Login Successful. You are logged in as {user.username}')
                 login(request, user)
                 return redirect('MyDoc:my_profile')
-            else:
-                messages.warning(request, 'INVALID LOGIN TRY AGAIN!!')
-                return redirect('MyDoc:login_patient')
+        else:
+            messages.error(request, 'Not a user!!. Register to access user content')
+            messages.error(request, 'INVALID LOGIN TRY AGAIN!!')
     return render(request, 'MyDoc/sign-in.html')
 
 

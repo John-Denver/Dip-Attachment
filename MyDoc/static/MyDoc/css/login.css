@@ -29,8 +29,8 @@
 
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid #5409e9;
+	background-color: #5409e9;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -95,7 +95,7 @@ input{
 			0 10px 10px rgba(0, 250, 42, 0.692);
 	position: relative;
 	overflow: hidden;
-	top: 40px;
+	margin-top: 80px;
 	left: 100px;
 	width: 1100px;
 	height: 550px;
@@ -164,7 +164,7 @@ input{
 }
 
 .overlayy {
-	background: #167ce9;
+	background: #5409e9;
 	background: -webkit-linear-gradient(to right, #2ba0ff, #167ce9);
 	background: linear-gradient(to right, #2ba0ff, #167ce9);
 	background-repeat: no-repeat;

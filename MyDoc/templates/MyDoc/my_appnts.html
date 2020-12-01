@@ -20,14 +20,20 @@
                 <h6 class="text-success">Appointment from Dr. {{ u_a.doctor }} </h6>
                          <hr style="">
                 <div class="card-body">
-                    <h6 style="margin-top: -23px; margin-left: -25px; color: red">Date & time: &nbsp; {{ u_a.date }}</h6>
+                    <h6 style="margin-top: -23px; margin-left: -25px;">Date & time: &nbsp; {{ u_a.date }}</h6>
 
                      <a href="{% url 'MyDoc:appnt_detail' u_a.id %}"
                      class="btn btn-outline-info btn-sm" role="button">More Details</a>
-
-
-                    <a style="list-style-type: none; margin-left: 339px;" href="{% url 'MyDoc:delete_appnt' u_a.id %}">
-                        <i class="fa fa-trash text-danger"></i>
+&nbsp;
+                    <a href=""
+                        class="btn btn-outline-warning btn-sm" role="button">Request Rescheduling
+                    </a>
+                    &nbsp;&nbsp;&nbsp;
+                      <a href="{% url 'MyDoc:delete_appnt' u_a.id %}"
+                        class="btn btn-outline-danger btn-sm" role="button">Cancel Appointment
+                    </a>
+                    <a href="">
+                        <i class="fa fa-calendar-check fa-stack-2x" title="Mark Complete" style="color:lawngreen; margin-left: 245px;"></i>
                     </a>
                 </div>
             </div>
@@ -44,7 +50,5 @@
 </div>
 
 </body>
-
-           {% include 'MyDoc/footer.html' %}
 {% endblock %}
 

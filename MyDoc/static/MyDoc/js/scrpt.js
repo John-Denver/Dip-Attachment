@@ -60,8 +60,15 @@ document.getElementById("myOverlay").style.display="none";
 
 }
 
+setTimeout(function (){
+    if ($('#msg').length > 0){
+        $('#msg').remove();
+    }
+}, 3000)
+
+
   window.onclick = function(event) {
-  if (event.target == modal) {
+  if (event.target === modal) {
     modal.style.display = "none";
     document.body.style.overflow = "auto"; // ADD THIS LINE
     document.body.style.height = "auto";  // ADD THIS LINE

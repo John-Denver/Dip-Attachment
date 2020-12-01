@@ -13,5 +13,6 @@ admin.site.register(Department)
 admin.site.register(Medrecs)
 admin.site.register(Message)
 admin.site.register(Doctor)
+admin.site.register(Recept)
 
 admin.site.register(UserAppointment)

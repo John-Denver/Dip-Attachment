@@ -47,16 +47,17 @@
     </nav>
   </div>
 </header>
-{% if messages %}
-<ul class="messages">
+
+<img src="{% static 'MyDoc/image/daan.jpg'%}" style="z-index: -1" class="bg" alt="">
+
+ {% if messages %}
+<ul class="messages" id="msg" style="margin-top: 80px; margin-bottom: -60px; width: 90%; margin-left: 60px;">
     {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    <li{% if message.tags %} class="{{ message.tags }}" id="msg"  style="list-style: none; padding: 10px;" {% endif %}>{{ message }}</li>
     {% endfor %}
 </ul>
 {% endif %}
-<h2 class="sgn">Sign in/ Registration Form</h2>
-
-<div class="containerr " id="container">
+<div class="containerr " id="container" style="margin-top: 80px;">
 		<div class="form-container sign-in-container">
 
                 <form action="" method="POST" enctype="multipart/form-data">
@@ -77,7 +78,7 @@
                             <input type="password" placeholder="password" class="form-control" name="password" required>
                         </div>
 </div>
-                        <button type="submit" name="lgn">Sign In</button>
+                        <button style="background-color: #5409e9;" type="submit" name="lgn">Sign In</button>
                         <a class="lnks" href="#">Forgot your password?</a>
 
                     </form>
