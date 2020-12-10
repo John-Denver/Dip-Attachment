@@ -95,7 +95,7 @@ def recept(request):
     context = {
         'recept': recept
     }
-    return render(request, 'MyDoc/recept.html', context)
+    return render(request, 'MyDoc/receept.html', context)
 
 
 def delete_mess(request, mess_id):
@@ -124,6 +124,8 @@ def patient_profile(request, user):
         user.email = request.POST['email']
         user.contact = request.POST['contact']
         user.blood_type = request.POST['blood_type']
+        user.height_cm = request.POST['height_cm']
+        user.weight_kg = request.POST['weight_kg']
         user.user = request.user
         user.save()
         return render(request, 'MyDoc/my_profile.html', {'user': user})
@@ -146,6 +148,8 @@ def patient(request):
         user.residence = request.POST['residence']
         user.languages = request.POST['languages']
         user.health_insurance = request.POST['health_insurance']
+        user.height = request.POST['height']
+        user.weight = request.POST['weight']
         user.user = request.user
         user.save()
         messages.success(request, f'Welcome to Denvers Hospital')
@@ -219,7 +223,7 @@ def login_admn(request):
         if admin is not None:
             if admin.is_staff and admin.is_active:
                login(request, admin)
-            return redirect('MyDoc:all_patients')
+               return redirect('MyDoc:all_patients')
     return render(request, 'MyDoc/sign-in.html')
 
 
@@ -260,8 +264,10 @@ def login_patient(request):
                 messages.success(request, f'Login Successful. You are logged in as {user.username}')
                 login(request, user)
                 return redirect('MyDoc:my_profile')
+            else:
+                messages.error(request, 'You are an Admin. This is the patients site')
+                return redirect('MyDoc:all_patients')
         else:
-            messages.error(request, 'Not a user!!. Register to access user content')
             messages.error(request, 'INVALID LOGIN TRY AGAIN!!')
     return render(request, 'MyDoc/sign-in.html')
 

@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'MyDoc',
-    'the_user',
+    'Doctors',
 ]
 
 MIDDLEWARE = [
@@ -134,7 +134,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'MyDoc/static/'
 
 
 # Static files (css, js, images)

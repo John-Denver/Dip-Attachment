@@ -14,5 +14,6 @@ admin.site.register(Medrecs)
 admin.site.register(Message)
 admin.site.register(Doctor)
 admin.site.register(Recept)
-
+admin.site.register(LabTechnician)
+admin.site.register(LabReport)
 admin.site.register(UserAppointment)

@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+        <title>My_Doc</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="../../static/Doctors/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'Doctors:index' %}">
+            Doctor Appointment
+        </a>
+    </nav>
+
+{% block content %}
+{% endblock %}
+</body>
+</html>

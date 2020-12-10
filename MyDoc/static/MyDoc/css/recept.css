@@ -1,0 +1,24 @@
+* { margin: 0; padding: 0; }
+body { font: 14px/1.4 Georgia, serif; }
+#page-wrap { width: 550px; margin: 0 auto; }
+
+textarea { border: 0; font: 14px Georgia, Serif; overflow: hidden; resize: none; }
+table { border-collapse: collapse; }
+table td, table th { border: 1px solid black; padding: 5px; }
+
+#header { height: 45px; width: 100%; margin: 20px 0; background: #222; text-align: center; color: white; font: bold 15px Helvetica, Sans-Serif; text-decoration: uppercase; letter-spacing: 20px; padding: 8px 0px; }
+
+#address { width: 350px; height: 100px; float: left; }
+#customer { overflow: hidden; }
+
+#logo { text-align: right; float: right; position: relative; margin-top: -15px; border: 1px solid #fff; max-width: 540px; max-height: 100px; overflow: hidden; }
+#logoctr { display: none; }
+#logo:hover #logoctr, #logo.edit #logoctr { display: block; text-align: right; line-height: 25px; background: #eee; padding: 0 5px; }
+
+#customer-title { font-size: 20px; font-weight: bold; float: left; }
+
+#meta { margin-top: -19px; float: right; width: 250px; }
+#meta td { text-align: right;  }
+#meta td.meta-head { text-align: left; background: #eee; }
+#meta td textarea { width: 100%; height: 20px; text-align: right; }
+

@@ -1,0 +1,84 @@
+{% extends "MyDoc/nav_pat.html" %}
+
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<head>
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	
+	<title>Receipt</title>
+
+	<link rel="stylesheet" href="../../static/MyDoc/css/recept.css">
+
+	<link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
+
+
+</head>
+<body>
+<img src="{% static 'MyDoc/image/daan.jpg'%}" style="z-index: -1" class="bg" alt="">
+
+<div class="container-fluid" style="padding-top: 100px;">
+        <div class="page-header" style="background: #ffffff; margin-bottom: 20px;">
+            <h2 class="text-center text-primary"> <strong>My Receipts</strong></h2>
+        </div>
+</div>
+    <br>
+    <br>
+    <div class="row col-sm-offset-6">
+         {% if recept %}
+            {% for r in recept %}
+       <div id="page-wrap" style="background-color: #fff3cd; border-radius: 10px; margin-left: 55px; margin-bottom: 15px; padding: 10px;">
+
+                <textarea id="header">Receipt</textarea>
+
+                <div id="identity">
+
+                    <div id="address">Denvers Hospital
+                        <p>P.O BOX 6126, JUJA</p>
+                        <p>Phone: (+254) 712512358</p>
+                    </div>
+
+                    <div id="logo">
+                       <img id="image" src="../../static/MyDoc/image/nurse.JPG" alt="logo"  style="width: 90px; height: 70px" />
+                    </div>
+
+                </div>
+
+                    <table id="meta">
+                        <tr>
+                            <td class="meta-head">Receipt</td>
+                            <td>{{ r.user }}</td>
+                        </tr>
+                        <tr>
+
+                            <td class="meta-head">Date</td>
+                            <td id="date">{{ r.date }}</td>
+                        </tr>
+                    </table>
+
+                <br><hr style="margin-top: 150px;">
+
+        <div class="container" style="margin-top: 15px;">
+                <p class="text-secondary">Received from:{{ r.patient_name }} </p>
+                <p class="text-secondary">The sum of shillings: {{ r.amount_payed }}</p>
+                <p class="text-secondary">Being payment of: {{ r.payed_for }}</p>
+                </div>
+
+            </div>
+         {% endfor %}
+            {% else %}
+
+            <div class="card col-sm-6" style="margin-left: 300px; margin-top: 180px;">
+                <p class="text-warning" style="font-size: 30px; font-family: 'poppins', 'Sans-Serif',fantasy">You have no Receipts
+                </p>
+            </div>
+       {% endif %}
+
+</div>
+</div>
+	
+</body>
+
+</html>
+
+{% endblock %}

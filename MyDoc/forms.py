@@ -31,7 +31,7 @@ class UserUpdate(forms.ModelForm):
 class ProfileUpdate(forms.ModelForm):
     class Meta:
         model = Patient
-        fields = ['image', 'age', 'contact']
+        fields = ['image', 'age', 'contact', 'languages', 'height_cm', 'weight_kg']
 
 
 class AppointmentForm(forms.ModelForm):

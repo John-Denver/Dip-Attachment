@@ -7,17 +7,15 @@ from django.conf.urls import url, include
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import admin
-admin.autodiscover()
 
 admin.site.site_header = "HOSPITAL ADMINISTRATION"
 admin.site.index_title = "Denver Health-Care E-Hospital"
 
-admin.site.login = login_required(admin.site.login)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url('health/', include('MyDoc.urls')),
-    url('the_user/', include('the_user.urls')),
+    url('dct_app/', include('Doctors.urls')),
 ]
 
 

@@ -3,6 +3,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User, AbstractUser
 
+from django.contrib.auth.decorators import login_required
+
 # Create your models here.
 gender = (('Male', 'Male',),  ('Female', 'Female'), ('Others', 'Others'))
 blood_type = (('A', 'A'), ('A+', 'A+'), ('A-', 'A-'), ('B', 'B'),
@@ -32,6 +34,8 @@ class Patient(models.Model):
     residence = models.CharField(max_length=100, default='Nairobi/Juja')
     blood_type = models.CharField(max_length=5, choices=blood_type, default='O')
     health_insurance = models.CharField(max_length=100, choices=insurance, blank=True, default='NHIF')
+    height_cm = models.FloatField(default=130)
+    weight_kg = models.FloatField(default=65)
     last_check = models.DateField(blank=True, default=django.utils.timezone.now)
     next_check = models.DateField(blank=True, default=django.utils.timezone.now)
 
@@ -57,6 +61,23 @@ class Doctor(models.Model):
         return self.d_name
 
 
+class LabTechnician(models.Model):
+    name = models.CharField(max_length=60)
+    image = models.ImageField(default='enrc.jpg', upload_to='profile_pics', blank=True)
+    bio = models.TextField(max_length=150)
+    department = models.ForeignKey(Department, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.name
+
+
+class LabReport(models.Model):
+    tech_name = models.ForeignKey(LabTechnician, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, help_text='To which patient tests belong', null=True, on_delete=models.CASCADE, related_name="reds")
+    tests = models.TextField()
+    results = models.TextField()
+
+
 class Clinician(models.Model):
     c_name = models.CharField(max_length=60)
     department = models.ForeignKey(Department, on_delete=models.PROTECT)
@@ -66,7 +87,7 @@ class Clinician(models.Model):
 
 
 class Medrecs(models.Model):
-    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="records")
+    user = models.ForeignKey(User, null=True, help_text='To which patient medication belongs to', on_delete=models.CASCADE, related_name="records")
     title = models.CharField(max_length=60, null=True)
     clinician = models.ForeignKey(Clinician, on_delete=models.PROTECT)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
@@ -118,7 +139,7 @@ class Contact(models.Model):
 
 
 class Message(models.Model):
-    to = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="record")
+    to = models.ForeignKey(User, null=True, help_text='To which patient message belongs to', on_delete=models.CASCADE, related_name="record")
     clinician = models.ForeignKey(Clinician, null=True, on_delete=models.PROTECT)
     name = models.CharField(max_length=40)
     email = models.EmailField()
@@ -131,7 +152,7 @@ class Message(models.Model):
 
 class Recept(models.Model):
     date = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recpts")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, help_text='To which Receipt belongs to', related_name="recpts")
     patient_name = models.CharField(max_length=100)
     amount_payed = models.CharField(max_length=300)
     payment_mode = models.CharField(max_length=30, choices=payment_mode)

@@ -24,6 +24,7 @@
 </script>
 
 <img src="{% static 'MyDoc/image/daan.jpg'%}" style="z-index: -1" class="bg" alt="">
+<d
 <div class="col-md-7">
     <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
           <div class="media">
@@ -51,6 +52,8 @@
                 <ul class="list-group">
                   <li class="list-group-item list-group-item-light">Full Name: {{ user.first_name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ user.last_name }}</li>
                   <li class="list-group-item list-group-item-light col-md-12">Date of Birth: {{ user.patient.birth_date }}</li>
+        <li class="list-group-item list-group-item-light col-md-12">Height: {{ user.patient.height_cm }} cm</li>
+                  <li class="list-group-item list-group-item-light col-md-12">Weight: {{ user.patient.weight_kg }} Kgs</li>
                   <li class="list-group-item list-group-item-light col-md-12">Languages: {{ user.patient.languages }}</li>
                   <li class="list-group-item list-group-item-light col-md-12">Health insurances: {{ user.patient.health_insurance }}</li>
                   <li class="list-group-item list-group-item-light col-md-12">Residence: {{ user.patient.residence }}</li>
