@@ -6,38 +6,34 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" href="../../static/MyDoc/css/index.css" type="text/css">
-        <link rel="stylesheet" href="../../static/MyDoc/css/responsive.css" type="text/css">
+         <link rel="stylesheet" href="{% static 'MyDoc/css/index.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/responsive.css' %}" type="text/css">
 
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-        <link rel="stylesheet" href="../../static/MyDoc/css/open-iconic-bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/open-iconic-bootstrap.min.css' %}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
-
-        <link rel="stylesheet" href="../../static/MyDoc/css/bootstrap.min.css">
-
-
+        <link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
         <script src="{% static 'MyDoc/js/scrpt.js' %}"></script>
 
-        <link rel="stylesheet" href="../../static/MyDoc/css/animate.css">
-        <link rel="stylesheet" href="../../static/MyDoc/css/ionicons.min.css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/ionicons.min.css' %}">
 
-        <link rel="stylesheet" href="../../static/MyDoc/css/flaticon.css">
-        <link rel="stylesheet" href="../../static/MyDoc/css/icomoon.css">
-
+        <link rel="stylesheet" href="{% static 'MyDoc/css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/icomoon.css' %}">
 
 </head>
-  <header class="header_area">
+  <header class="header_area" style="background-color: #0b0b0b;">
   <div class="main_menu">
     <nav class="navbar navbar-expand-lg navbar-light" id="navbar" style="background: #5409e9;">
       <div class="container" style="background: #5409e9;">
         
         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
           <ul class="nav navbar-nav navbar-left menu_nav">
-            <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:index' %}"><i class="fa fa-hospital" style="color: #2bff00"></i>&nbsp;Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:all_patients' %}"><i class="fa fa-users" style="color: #2bff00"></i>&nbsp;Patients</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'Doctors:index' %}"><i class="fa fa-hospital" style="color: #2bff00"></i>&nbsp;Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'Doctors:all_patients' %}"><i class="fa fa-users" style="color: #2bff00"></i>&nbsp;Patients</a></li>
             <li class="nav-item submenu dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
               aria-expanded="false">Consultations<i class="fa fa-caret-down"></i></a>
@@ -49,7 +45,7 @@
               <li class="nav-item" onclick="openForm()"><a class="nav-link" href="{% url 'MyDoc:appointment' %}" ><i class="fa fa-address-book" style="color: #2bff00" aria-hidden="true"></i>&nbsp;<span>Appointments</span></a></li>
 
               <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:message' %}"><i class="fa fa-comments" style="color: #2bff00"></i>&nbsp;Messages</a></li>
-               <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:med_detal' %}"><i class="fa fa-thermometer-three-quarters" style="color: #2bff00"></i>&nbsp;Diagnosis</a></li>
+               <li class="nav-item"><a class="nav-link" href="{% url 'Doctors:medrecs' %}"><i class="fa fa-thermometer-three-quarters" style="color: #2bff00"></i>&nbsp;Diagnosis</a></li>
 
          </ul>
 

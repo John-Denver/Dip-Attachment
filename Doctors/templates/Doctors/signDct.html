@@ -1,0 +1,98 @@
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+        <title>My_Doc</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="{% static 'Doctors/css/index.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'Doctors/css/login.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'Doctors/css/responsive.css' %}" type="text/css">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'Doctors/css/open-iconic-bootstrap.min.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'Doctors/css/bootstrap.min.css' %}">
+
+        <script src="{% static 'Doctors/js/scrpt.js' %}"></script>
+        <script src="{% static 'Doctors/js/JQuery3.3.1.js' %}"></script>
+        <script src="{% static 'Doctors/js/lightslider.js' %}"></script>
+
+        <link rel="stylesheet" href="{% static 'Doctors/css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'Doctors/css/ionicons.min.css' %}">
+
+        <link rel="stylesheet" href="{% static 'Doctors/css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'Doctors/css/icomoon.css' %}">
+
+</head>
+
+<body>
+<header class="header_area">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar" style="background: #5409e9;">
+      <div class="container" style="background: #5409e9;">
+
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav navbar-left menu_nav">
+            <li class="nav-item"><a class="nav-link" href="{% url 'Doctors:index' %}"><i class="fa fa-home"></i>&nbsp;Home</a></li>
+         </ul>
+
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<img src="{% static 'MyDoc/image/daan.jpg'%}" style="z-index: -1" class="bg" alt="">
+
+ {% if messages %}
+<ul class="messages" id="msg" style="margin-top: 80px; margin-bottom: -60px; width: 90%; margin-left: 60px;">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" id="msg"  style="list-style: none; padding: 10px;" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="containerr " id="container" style="margin-top: 80px;">
+		<div class="form-container sign-in-container">
+
+                <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <h1 class="create">Sign in</h1>
+
+                        <span class="span">or use your account</span>
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <input type="text" class="form-control" placeholder="Your Username..." name="username" required>
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <input type="password" placeholder="password" class="form-control" name="password" required>
+                        </div>
+                    </div>
+                        <button style="background-color: #5409e9;" type="submit" name="lgn">Sign In</button>
+                        <a class="lnks" href="#">Forgot your password?</a>
+
+                </form>
+
+
+	</div>
+	<div class="overlay-container">
+		<div class="overlayy">
+			<div class="overlay-panel overlay-right">
+				<h1 class="create">Welcome Back!</h1>
+				<p class="para" >To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+</body>
+</html>

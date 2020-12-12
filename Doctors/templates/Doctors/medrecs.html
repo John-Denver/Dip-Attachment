@@ -1,0 +1,44 @@
+{% extends 'Doctors/nav_admn.html' %}
+{% load crispy_forms_filters %}
+
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+ <img src="{% static 'MyDoc/image/steth.jpg'%}" style="z-index: -1" class="bg" alt="">
+
+  <div class="container-fluid" style="padding-top: 100px">
+            <div class="row">
+                <h3 class="text-primary" style="margin-left: 550px;">
+                    Diagnose Patient &nbsp; <i class="fa fa-hospital"></i>
+                </h3>
+            </div>
+  </div>
+            <hr>
+ {% if messages %}
+<ul class="messages" id="msg" style="margin-top: 80px; margin-bottom: -60px; width: 90%; margin-left: 60px;">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" id="msg"  style="list-style: none; padding: 10px;" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+   <div class="col-md-7" style="margin-left: 190px;">
+        <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
+            <form method="POST" enctype="multipart/form-data" style="margin-top: -90px;">
+                {% csrf_token %}
+                <fieldset class="form-group col-lg-offset-10" >
+                    <legend class="border-bottom mb-4" style="background: #5409e9; text-align: center; font-family: 'Bradley Hand ITC';"><strong>Patient Medical Records</strong></legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-success" type="submit">Add Records</button>
+                </div>
+            </form>
+
+        </div>
+   </div>
+</body>
+</html>
+{% endblock %}

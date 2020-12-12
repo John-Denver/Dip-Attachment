@@ -1,33 +1,30 @@
-{% extends 'MyDoc/nav_admn.html' %}
+{% extends 'Doctors/nav_admn.html' %}
 {% load static %}
 {% block content %}
 <html lang="en">
 <head>
-        <title>{{ patient.user }} details</title>
+        <title>My_Doc</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" href="../../static/MyDoc/css/index.css" type="text/css">
-        <link rel="stylesheet" href="../../static/MyDoc/css/responsive.css" type="text/css">
+         <link rel="stylesheet" href="{% static 'MyDoc/css/index.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/responsive.css' %}" type="text/css">
 
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-        <link rel="stylesheet" href="../../static/MyDoc/css/open-iconic-bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/open-iconic-bootstrap.min.css' %}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 
-        <link rel="stylesheet" href="../../static/MyDoc/css/bootstrap.min.css">
-
-
+        <link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
         <script src="{% static 'MyDoc/js/scrpt.js' %}"></script>
 
-        <link rel="stylesheet" href="../../static/MyDoc/css/animate.css">
-        <link rel="stylesheet" href="../../static/MyDoc/css/ionicons.min.css">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/ionicons.min.css' %}">
 
-        <link rel="stylesheet" href="../../static/MyDoc/css/flaticon.css">
-        <link rel="stylesheet" href="../../static/MyDoc/css/icomoon.css">
-
+        <link rel="stylesheet" href="{% static 'MyDoc/css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'MyDoc/css/icomoon.css' %}">
 
 </head>
 
@@ -82,7 +79,29 @@ body {
     </div>
 </div>
 
-<main role="main" class="container" style="margin-right: -580px; margin-top: -280px">
+
+<div class="col-md-7">
+    <div class="content-section" style="background: #ffffff; padding: 28px 20px 15px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 19px; margin-bottom: 60px;">
+          <div class="media">
+              <p class='text-muted'>E-Medcs And Professional Working.
+                <br>Profile And state
+              </p>
+          </div>
+              <hr>
+              <p>
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-light col-md-12">Height: {{ patient.height_cm }} cm</li>
+                  <li class="list-group-item list-group-item-light col-md-12">Weight: {{ patient.weight_kg }} Kgs</li>
+                  <li class="list-group-item list-group-item-light col-md-12">Languages: {{ patient.languages }}</li>
+                  <li class="list-group-item list-group-item-light col-md-12">Health insurances: {{ patient.health_insurance }}</li>
+                  <li class="list-group-item list-group-item-light col-md-12">Residence: {{ patient.residence }}</li>
+                </ul>
+              </p>
+          </div>
+</div>
+
+
+<main role="main" class="container" style="margin-right: -580px; margin-top: -745px; margin-bottom: 60px;">
           <div class="row">
               <div class="" style="width: 530px;">
                 <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
@@ -92,13 +111,12 @@ body {
                     <div class="media-body" style="margin-top: -60px;">
                         <h2 class="">{{ patient.user }}</h2>
                         <p class="text-secondary">{{ patient.email }}</p>
-                        <a href="{% url 'MyDoc:profile_update' %}" class="btn btn-outline-info mr-4" >Update information</a>
                     </div>
                   </div>
                   <p class='text-muted'>E-Medcs And Professional Working.
                     <br><br>Profile And state
                     <ul class="list-group">
-                      <li class="list-group-item list-group-item-light">First Name: {{ user.patient.first_name }} Last Name: {{ user.patient.last_name }}</li>
+                      <li class="list-group-item list-group-item-light">First Name: {{ patient.first_name }} Last Name: {{ patient.last_name }}</li>
                       <li class="list-group-item list-group-item-light">Age: {{ patient.age }}</li>
                       <li class="list-group-item list-group-item-light">Gender: {{ patient.gender }}</li>
                       <li class="list-group-item list-group-item-light">Contact: {{ patient.contact }}</li>
@@ -124,19 +142,19 @@ body {
     <br>
     <br>
 <div class="row">
-        {% if meds %}
-            {% for m in meds %}
+        {% if medrecs %}
+            {% for m in medrecs %}
         <div class="col-sm-5 card" style="margin-left: 55px; margin-bottom: 15px;">
             <img class="logo" style="height: 35px; width: 35px; margin-right: 15px;" src="{% static 'MyDoc/image/nurse.JPG' %}">
                 <p style="margin-left: 50px; margin-top: -40px;">St.Denvers Hospital,</p><br>
                 <p style="margin-left: 50px; margin-top: -48px;">Healthcare is our compassion</p>
-                <h6 style="text-align: right; margin-top: -50px;" class="text-success">Doctor:{{ m.clinician }}</h6>
-                <p style="text-align: right; margin-top: -10px;">{{ m.date }}</p>
+                <h6 style="text-align: right; margin-top: -50px;" class="text-success">Doctor:{{ m.meds.doctor }}</h6>
+                <p style="text-align: right; margin-top: -10px;">{{ m.meds.date }}</p>
             <hr style="margin-top: -10px; outline-width: thick;">
-                <p style="margin-top: -23px;">Subject: {{ m.title }}</p>
+                <p style="margin-top: -23px;">Subject: {{ m.meds.title }}</p>
                 <div class="panel panel-primary">
                    <div class="panel-body">
-                        <p>Medication: {{ m.meds }}</p>
+                        <p>Medication: {{ m.meds.meds }}</p>
                     </div>
 
                 </div>

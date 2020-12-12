@@ -2,96 +2,55 @@
 
 {% load static %}
 {% block content %}
-<html lang="en">
-<head>
-    <title>My_Doc</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../../static/Doctors/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../static/Doctors/css/bootstrap.css">
-</head>
 <body>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'Doctors:index' %}">
-            Doctor Appointment
-        </a>
-    </nav>
-
+<img src="{% static 'MyDoc/image/martha.jpg'%}" style="z-index: -1" class="bg" alt="">
 
 <div class="container-fluid">
-    <div class="row">
         <div class="col-md-1 col-xs-1 col-sm-1"></div>
         <div class="col-md-10 col-xs-10 col-sm-10">
             <h3 class="round3" style="text-align: center;">My Appointments</h3>
         </div>
         <div class="col-md-1 col-xs-1 col-sm-1"></div>
-    </div>
+</div>
 
-    <div class="row">
-        <div class="col-md-10 col-xs-10 col-sm-10"></div>
-        <div class="col-md-2 col-xs-1 col-sm-1">
-            <a href="{% url 'Doctors:patient_create' %}">
-                <button type="button" class="btn btn-outline-primary">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </button>
-            </a>
-            <br />
-        </div>
-    </div>
 
     <br>
+ <div class="row">
+    {% if dcts %}
+    {% for patient in dcts %}
 
-    {% if patient_list %}
-    {% for patient in patient_list %}
+        <div class="col-md-6">
+    <div class="content-section" style="background: #ffffff; padding: 90px 20px 15px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 60px; margin-bottom: -60px;">
+          <div class="media">
+            <div class="media-body">
 
-    <div class="row">
-        <div class="col-md-1 col-xs-1 col-sm-1"></div>
-        <div class="col-md-7 col-xs-7 col-sm-7">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <h3>
-                        <a href="{% url 'Doctors:patient_detail' patient.pk %}">{{ patient.patient_name }}</a><span class="glyphicon glyphicon-user"></span>
-                    </h3>
-                    <br>
-                    {{ patient.registration_date }}
-                    <div>
-                        Patient of: <a href="{% url 'Doctors:doctor_detail' patient.doctor.pk %}">{{ patient.doctor_name }}</a>
-                    </div>
-                </li>
-            </ul>
-            <br>
-        </div>
-    <div class="col-md-1 col-xs-1 col-sm-1">
-        <a href="{% url 'Doctors:index' %}">
-            <button type="button" class="btn btn-success">
-                <span class="glyphicon glyphicon-check"></span>
-            </button>
-        </a>
+            <p class="account-heading" style="font-size: 18px; color: #6f42c1; margin-top: -79px;">From.{{ patient.name }},&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+            </p>
+                <p>{{ patient.email }}</p>
+                <hr>
+                <p class="text-secondary">Date Added-: {{ patient.date }}</p>
+                    <p class="text-secondary">Patients Location:-  {{ patient.location }}</p>
+
+                <p>RE: {{ patient.subject }}</p>
+                <p>Reason-: {{ patient.message }}</p>
+                <hr>
+                 <a href="{% url 'Doctors:dct_appnt' %}" class="btn btn-outline-info btn-sm" role="button">
+                     Schedule Appointment
+                 </a>
+
+
+         </div>
     </div>
 
-    <div class="col-md-1">
-        <a href="{% url 'Doctors:patient_update' patient.pk %}">
-            <button type="button" class="btn btn-info">
-                <span class="glyphicon glyphicon-pencil"></span>
-            </button>
-        </a>
     </div>
-
-    <div class="col-md-1">
-        <a href="{% url 'Doctors:patient_delete' patient.pk %}">
-            <button type="button" class="btn btn-danger">
-                <span class="glyphicon glyphicon-trash"></span>
-            </button>
-        </a>
-    </div>
-        <div class="col-md-1 col-xs-1 col-sm-1"></div>
-
-    </div>
-
-    {% endfor %}
-    {% endif %}
 </div>
-    </body>
-</html>
+
+
+   {% endfor %}
+    {% endif %}
+
+ </div>
+</body>
 {% endblock %}
 

@@ -18,6 +18,7 @@ urlpatterns = [
     url('dct_app/', include('Doctors.urls')),
 ]
 
+LOGIN_URL = 'MyDoc:login_admn'
 
 if settings.DEBUG:
 

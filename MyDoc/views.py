@@ -163,9 +163,12 @@ def detail(request, pat_id):
     return render(request, 'MyDoc/detail_pat.html', {'patient': patient})
 
 
-def med_detal(request):
-    meds = Medrecs.objects.all().filter(user=request.user)
-    return render(request, 'MyDoc/med_users.html', {'meds': meds})
+def med_detal(request, pat_id):
+    medrecs = Medrecs.objects.all(Medrecs, pk=pat_id).filter(user=request.user)
+    context = {
+        'medrecs': medrecs
+        }
+    return render(request, 'MyDoc/detail_pat.html', context)
 
 
 def my_appnts(request):

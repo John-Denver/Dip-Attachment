@@ -87,11 +87,11 @@ class Clinician(models.Model):
 
 
 class Medrecs(models.Model):
-    user = models.ForeignKey(User, null=True, help_text='To which patient medication belongs to', on_delete=models.CASCADE, related_name="records")
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="meds")
     title = models.CharField(max_length=60, null=True)
-    clinician = models.ForeignKey(Clinician, on_delete=models.PROTECT)
+    doctor = models.ForeignKey('Doctors.Doctor', null=True, on_delete=models.PROTECT)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    date = models.DateTimeField(default=django.utils.timezone.now, null=True)
+    date = models.DateTimeField(auto_now=True, null=True)
     meds = models.TextField()
 
     def __str__(self):
@@ -100,26 +100,34 @@ class Medrecs(models.Model):
 
 class Appointment(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="recrds")
+    doc = models.ForeignKey('Doctors.Doctor', null=True, on_delete=models.PROTECT, related_name="dcts")
     name = models.CharField(max_length=40)
+    date = models.DateTimeField(auto_now_add=True, null=True)
     subject = models.CharField(max_length=60, null=True)
     number = models.IntegerField()
+    location = models.CharField(max_length=60, null=True, default="Juja")
     email = models.EmailField()
     message = models.TextField()
+    waiting_status = models.BooleanField(default=True)
+
+    @property
+    def is_waiting(self):
+        return bool(self.waiting_status)
 
     def __unicode__(self):
         return self.user
 
     def __str__(self):
-        return self.name + '-' + self.subject
+        return self.name + 'Subject:-' + self.subject
 
 
 class UserAppointment(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="recds")
-    patient_name = models.CharField(max_length=60, null=True)
+    patient_name = models.CharField(max_length=60, null=True, help_text="The user selected above names';'")
     doctor = models.ForeignKey(Doctor, on_delete=models.PROTECT)
     consultation_type = models.CharField(max_length=30, blank=True, choices=consultation_type, default='No consultation')
     explanation = models.TextField(max_length=100, null=True)
-    date = models.DateTimeField()
+    date = models.DateTimeField(help_text="Date of scheduled appointment")
     location = models.CharField(max_length=30, null=True)
     reason = models.TextField()
 
