@@ -1,4 +1,4 @@
-{% extends 'Doctors/nav_admn.html' %}
+{% extends 'Doctors/base.html' %}
 {% load crispy_forms_filters %}
 
 {% load static %}
@@ -8,7 +8,7 @@
 
  <img src="{% static 'MyDoc/image/steth.jpg'%}" style="z-index: -1" class="bg" alt="">
 
-  <div class="container-fluid" style="padding-top: 100px">
+ <div class="container-fluid" style="margin-top: 100px; background: #ffffff">
             <div class="row">
                 <h3 class="text-primary" style="margin-left: 550px;">
                     Diagnose Patient &nbsp; <i class="fa fa-hospital"></i>
@@ -29,7 +29,7 @@
             <form method="POST" enctype="multipart/form-data" style="margin-top: -90px;">
                 {% csrf_token %}
                 <fieldset class="form-group col-lg-offset-10" >
-                    <legend class="border-bottom mb-4" style="background: #5409e9; text-align: center; font-family: 'Bradley Hand ITC';"><strong>Patient Medical Records</strong></legend>
+                    <legend class="border-bottom mb-4" style="background: black; color: #ffffff; text-align: center; font-family: 'Bradley Hand ITC';"><strong>Patient Medical Records</strong></legend>
                     {{ form|crispy }}
                 </fieldset>
                 <div class="form-group">

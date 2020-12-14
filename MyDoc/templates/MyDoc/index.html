@@ -2,31 +2,7 @@
 {% load static %}
 {% block content %}
 <html lang="en">
- <head>
-        <title>My_Doc</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/index.css' %}" type="text/css">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/responsive.css' %}" type="text/css">
-
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/open-iconic-bootstrap.min.css' %}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
-
-        <script src="{% static 'MyDoc/js/scrpt.js' %}"></script>
-        <script src="{% static 'MyDoc/js/JQuery3.3.1.js' %}"></script>
-        <script src="{% static 'MyDoc/js/lightslider.js' %}"></script>
-
-        <link rel="stylesheet" href="{% static 'MyDoc/css/animate.css' %}">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/ionicons.min.css' %}">
-
-        <link rel="stylesheet" href="{% static 'MyDoc/css/flaticon.css' %}">
-        <link rel="stylesheet" href="{% static 'MyDoc/css/icomoon.css' %}">
-
-</head>
-<body style="background-color: #0d0513;">
+<body>
 <section>
             <header>
                 <a href="#" class="logo" style="margin-top: 19px; color: #16e932;">My_Doc</a>
@@ -48,8 +24,8 @@
             </ul>
 
         </section>
-<!----Departments Shortcut Landing page---->
-<div class="container-fluid">
+<!----Appointment Links---->
+<div class="container-fluid" style="margin-top: -50px;">
   <div class="row">
     <div class="col-md-3" style="display: inline-block; box-shadow: #5a6268">
         <div class="content-section" style="background: #ffffff; height: 300px; padding: 60px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 3px; margin-top: 90px; margin-bottom: 20px;">
@@ -121,24 +97,24 @@
  </div>
 </div>
 
-       <div class="containerrr">
-		<!--slider------------------->
+<!----End Appointment Links---->
+
+     <!----  <div class="containerz">
 		<ul id="autoWidth" class="cs-hidden">
-		<!--1------------------------------>
+
     {% if doctors %}
         {% for dct in doctors %}
           <li class="item-a">
-              <!--slider-box-->
+
                 <div class="box">
                     <p class="marvel">St.Denvers</p>
-                    <!--model-->
+
                     <img src="{{ dct.image.url }}" class="model" alt="">
-                    <!--details-->
 
                     <p class="para" style="font-size: 19px; margin-top: -15px;">Dr.{{ dct.d_name }}</p>
 
                     <a href="{% url 'MyDoc:doctors' %}">
-                     <button type="button" style="margin-top: -50px">Read Mre</button>
+                     <button type="button" style="margin-top: -50px">Read More</button>
                     </a>
                 </div>
           </li>
@@ -149,10 +125,8 @@
 
 
 
-	</div>
+	</div>  ---->
 
-             <!----End of departments Shortcut Landing page---->
-        <!--End Landng Sect-->
 
 <hr>
  {% include 'MyDoc/footer.html' %}

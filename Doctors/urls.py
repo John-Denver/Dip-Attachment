@@ -16,8 +16,10 @@ urlpatterns = [
     path('', views.indexview, name='index'),
     path('all_patients', views.all_patients, name='all_patients'),
     path('medrecs', views.medrecs, name='medrecs'),
+    path('med_detal', views.med_detal, name='med_detal'),
     path('dct_appnt', views.dct_appnt, name='dct_appnt'),
     path('login_admn', views.login_admn, name='login_admn'),
+    path('logout_admn', views.logout_admn, name='logout_admn'),
 
     path('doctor/<int:pk>/', views.DoctorDetailView.as_view(), name='doctor_detail'),
     path('patient/<int:pk>/', views.PatientDetailView.as_view(), name='patient_detail'),

@@ -28,41 +28,74 @@
 
 </head>
 <body>
+{% if user.doctor %}
+  <header class="header_area" style="background-color: #0b0b0b;">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar" style="background: black;">
+      <div class="container" style="background: black;">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'Doctors:index' %}"> Doctor {{ user.username }}</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav navbar-left menu_nav">
+            <li class="nav-item"><a class="nav-link" href="{% url 'Doctors:index' %}"><i class="fa fa-hospital" style="color: #2bff00"></i>&nbsp;Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'Doctors:all_patients' %}"><i class="fa fa-users" style="color: #2bff00"></i>&nbsp;Patients</a></li>
+
+              <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-comments" style="color: #2bff00"></i>&nbsp;Messages</a></li>
+               <li class="nav-item"><a class="nav-link" href="{% url 'Doctors:medrecs' %}"><i class="fa fa-thermometer-three-quarters" style="color: #2bff00"></i>&nbsp;Diagnosis</a></li>
+
+           <li class="nav-item"><a class="nav-link" href="{% url 'Doctors:med_detal' %}"><i class="fa fa-clipboard" style="color: #2bff00"></i>&nbsp;Patient Records</a></li>
+
           </ul>
-        </li>
 
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
+            <ul class="nav navbar-nav navbar-right" style="margin-right: -110px">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Doctors:logout_admn' %}">
+                        <i class="fa fa-power-off" style="color: red" aria-hidden="true"></i>&nbsp;Log out
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Doctors:index' %}">
+                            <i class="fa fa-user" style="color: #2bff00"></i>&nbsp;Dr.{{ user.username }}
+                        </a>
+                    </li>
+
+                   {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'Doctors:login_admn' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Log in
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+          <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" >
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+           </form>
+
+
+        </div>
+      </div>
+    </nav>
   </div>
-</nav>
+</header>
+
+{% else %}
+    <header class="header_area" style="background-color: #0b0b0b;">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar" style="background: #5409e9;">
+      <div class="container" style="background: #5409e9;">
+
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav navbar-left menu_nav">
+            <li class="nav-item"><a class="nav-link" href="{% url 'Doctors:index' %}"><i class="fa fa-hospital" style="color: #2bff00"></i>&nbsp;Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'Doctors:login_admn' %}"><i class="fa fa-user" style="color: #2bff00"></i>&nbsp;Doctor Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'MyDoc:login_patient' %}"><i class="fa fa-user" style="color: #2bff00"></i>&nbsp;Patient Login</a></li>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+{% endif %}
 
 {% block content %}
 {% endblock %}

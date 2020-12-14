@@ -8,7 +8,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView, ListView, D
 
 from .forms import *
 from .models import Patientss, Doctor
-from MyDoc.models import Patient, Appointment
+from MyDoc.models import Patient, Appointment, Medrecs
 
 from django.contrib.auth import login, authenticate, logout, admin
 
@@ -21,16 +21,16 @@ def indexview(request):
             }
         return render(request, 'Doctors/index.html', context)
     else:
-        return redirect('MyDoc:login_admn')
+        return redirect('Doctors:login_admn')
 
 
-@login_required(login_url='MyDoc:login_admn')
-def my_dct(request):
-    if request.user.is_authenticated:
-        dcts = Appointment.objects.all().filter(doc=request.user)
-        return render(request, 'Doctors/index.html', {'dcts': dcts})
-    else:
-        return redirect('MyDoc:login_admn')
+@login_required(login_url='Doctors:login_admn')
+def med_detal(request):
+    medrecs = Medrecs.objects.all()
+    context = {
+        'medrecs': medrecs
+        }
+    return render(request, 'Doctors/med_users.html', context)
 
 
 @login_required(login_url='Doctors:login_admn')
@@ -40,6 +40,22 @@ def all_patients(request):
         'patient': patient
     }
     return render(request, 'Doctors/all_patients.html', context)
+
+
+class SearchView(ListView):
+    model = Patient
+    template_name = 'all_patients.html'
+    context_object_name = 'all_search_results'
+
+    def get_queryset(self):
+        result = super(SearchView, self).get_queryset()
+        query = self.request.GET.get('search')
+        if query:
+            postresult = Patient.objects.filter(username__contains=query)
+            result = postresult
+        else:
+           result = None
+           return result
 
 
 def login_admn(request):
@@ -60,6 +76,13 @@ def login_admn(request):
     return render(request, 'Doctors/signDct.html')
 
 
+def logout_admn(request):
+    logout(request)
+    messages.success(request, f'You are logged out.')
+    return redirect('Doctors:login_admn')
+
+
+@login_required(login_url='MyDoc:login_admn')
 def medrecs(request):
     form = MedForm(request.POST or None)
     if form.is_valid():
@@ -72,18 +95,20 @@ def medrecs(request):
     return render(request, 'Doctors/medrecs.html', {'form': form})
 
 
+@login_required(login_url='Doctors:login_admn')
 def dct_appnt(request):
     form = UserAppointmentForm(request.POST or None)
     if form.is_valid():
-        appnt = form.save(commit=False)
-        appnt.patient_name = request.POST['patient_name']
-        appnt.consultation_type = request.POST['consultation_type']
-        appnt.explanation = request.POST['explanation']
-        appnt.date = request.POST['date']
-        appnt.location = request.POST['location']
-        appnt.reason = request.POST['reason']
-        appnt.save()
-        messages.success(request, f'Appointment to { appnt.patient } has been scheduled')
+        appn = form.save(commit=False)
+        appn.patient_name = request.POST['patient_name']
+        appn.consultation_type = request.POST['consultation_type']
+        appn.explanation = request.POST['explanation']
+        appn.date = request.POST['date']
+        appn.time = request.POST['time']
+        appn.location = request.POST['location']
+        appn.reason = request.POST['reason']
+        appn.save()
+        messages.success(request, f'Appointment to has been scheduled')
     form = UserAppointmentForm()
     return render(request, 'Doctors/schedule_appointment.html', {'form': form})
 

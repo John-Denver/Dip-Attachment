@@ -29,15 +29,15 @@ class Patient(models.Model):
     gender = models.CharField(max_length=6, choices=gender, default='Male')
     email = models.EmailField(blank=True)
     contact = models.IntegerField()
-    birth_date = models.DateField(default=django.utils.timezone.now)
+    birth_date = models.DateField(default=django.utils.timezone.now, help_text="Strict Format YYYY-MM-DD")
     languages = models.CharField(max_length=100, default='English')
     residence = models.CharField(max_length=100, default='Nairobi/Juja')
-    blood_type = models.CharField(max_length=5, choices=blood_type, default='O')
+    blood_type = models.CharField(max_length=5, choices=blood_type, default='O', blank=True)
     health_insurance = models.CharField(max_length=100, choices=insurance, blank=True, default='NHIF')
-    height_cm = models.FloatField(default=130)
-    weight_kg = models.FloatField(default=65)
-    last_check = models.DateField(blank=True, default=django.utils.timezone.now)
-    next_check = models.DateField(blank=True, default=django.utils.timezone.now)
+    height_cm = models.FloatField(default=130.0, blank=True)
+    weight_kg = models.FloatField(default=65.0, blank=True)
+    last_check = models.DateField(blank=True, default="2020-03-13", help_text="Format YYYY-MM-DD")
+    next_check = models.DateField(blank=True, default="2020-03-13", help_text="Format YYYY-MM-DD")
 
     def __str__(self):
         return self.username
@@ -87,7 +87,7 @@ class Clinician(models.Model):
 
 
 class Medrecs(models.Model):
-    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="meds")
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE, related_name="meds")
     title = models.CharField(max_length=60, null=True)
     doctor = models.ForeignKey('Doctors.Doctor', null=True, on_delete=models.PROTECT)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
@@ -127,7 +127,8 @@ class UserAppointment(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.PROTECT)
     consultation_type = models.CharField(max_length=30, blank=True, choices=consultation_type, default='No consultation')
     explanation = models.TextField(max_length=100, null=True)
-    date = models.DateTimeField(help_text="Date of scheduled appointment")
+    date = models.DateTimeField(help_text="Strict Format: YYYY-MM-DD, time. Appointment Day and time",
+                                )
     location = models.CharField(max_length=30, null=True)
     reason = models.TextField()
 

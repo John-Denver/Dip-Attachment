@@ -1,4 +1,4 @@
-{% extends 'Doctors/nav_admn.html' %}
+{% extends 'Doctors/base.html' %}
 {% load static %}
 {% block content %}
 <html lang="en">
@@ -134,34 +134,6 @@ body {
 
  </main>
 
- <div class="page-header" style="background: #ffffff; margin-bottom: 20px;">
-            <h1 class="text-center text-primary"> <strong>{{ patient.user }}'s  Medical Records</strong></h1>
-        </div>
-
-    <br>
-    <br>
-    <br>
-<div class="row">
-        {% if medrecs %}
-            {% for m in medrecs %}
-        <div class="col-sm-5 card" style="margin-left: 55px; margin-bottom: 15px;">
-            <img class="logo" style="height: 35px; width: 35px; margin-right: 15px;" src="{% static 'MyDoc/image/nurse.JPG' %}">
-                <p style="margin-left: 50px; margin-top: -40px;">St.Denvers Hospital,</p><br>
-                <p style="margin-left: 50px; margin-top: -48px;">Healthcare is our compassion</p>
-                <h6 style="text-align: right; margin-top: -50px;" class="text-success">Doctor:{{ m.meds.doctor }}</h6>
-                <p style="text-align: right; margin-top: -10px;">{{ m.meds.date }}</p>
-            <hr style="margin-top: -10px; outline-width: thick;">
-                <p style="margin-top: -23px;">Subject: {{ m.meds.title }}</p>
-                <div class="panel panel-primary">
-                   <div class="panel-body">
-                        <p>Medication: {{ m.meds.meds }}</p>
-                    </div>
-
-                </div>
-        </div>
-                {% endfor %}
-        {% endif %}
-</div>
 
 </body>
 

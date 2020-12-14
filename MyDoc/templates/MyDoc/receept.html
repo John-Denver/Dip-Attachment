@@ -8,7 +8,7 @@
 	
 	<title>Receipt</title>
 
-	<link rel="stylesheet" href="../../static/MyDoc/css/recept.css">
+	<link rel="stylesheet" href="{% static 'MyDoc/css/recept.css' %}">
 
 	<link rel="stylesheet" href="{% static 'MyDoc/css/bootstrap.min.css' %}">
 
@@ -39,7 +39,7 @@
                     </div>
 
                     <div id="logo">
-                       <img id="image" src="../../static/MyDoc/image/nurse.JPG" alt="logo"  style="width: 90px; height: 70px" />
+                       <img id="image" src="{% static 'MyDoc/image/nurse.JPG' %}" alt="logo"  style="width: 90px; height: 70px" />
                     </div>
 
                 </div>
@@ -81,4 +81,5 @@
 
 </html>
 
+ {% include 'MyDoc/footer.html' %}
 {% endblock %}

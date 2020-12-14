@@ -17,7 +17,7 @@ class PatientForm(forms.ModelForm):
     class Meta:
         model = Patient
         fields = ('username', 'image', 'age', 'gender', 'email', 'contact', 'blood_type',
-                  'residence', 'birth_date', 'languages', 'health_insurance')
+                  'residence', 'birth_date', 'height_cm', 'weight_kg', 'languages', 'health_insurance')
 
 
 class UserUpdate(forms.ModelForm):

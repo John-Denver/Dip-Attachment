@@ -24,16 +24,16 @@
 </script>
 
 <img src="{% static 'MyDoc/image/daan.jpg'%}" style="z-index: -1" class="bg" alt="">
-<d
-<div class="col-md-7">
+
+ <div class="col-md-7">
     <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
           <div class="media">
-             <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;" src="{{ user.patient.image.url }}">
+             <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;"
+                  src="{{ user.patient.image.url }}" alt="{{user.username}}">
           <div class="media-body">
 
             <h2 class="account-heading" style="font-size: 30px; margin-top: -79px;">{{ user.username }}</h2>
             <p class="text-secondary">{{ user.email }}</p>
-
       </div>
     </div>
 
@@ -41,7 +41,7 @@
 </div>
 
 <div class="col-md-7">
-    <div class="content-section" style="background: #ffffff; padding: 28px 20px 15px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 19px; margin-bottom: 20px;">
+    <div class="content-section" style="background: #ffffff; padding: 28px 20px 15px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 19px; margin-bottom: 130px;">
           <div class="media">
               <p class='text-muted'>E-Medcs And Professional Working.
                 <br>Profile And state
@@ -52,10 +52,9 @@
                 <ul class="list-group">
                   <li class="list-group-item list-group-item-light">Full Name: {{ user.first_name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ user.last_name }}</li>
                   <li class="list-group-item list-group-item-light col-md-12">Date of Birth: {{ user.patient.birth_date }}</li>
-        <li class="list-group-item list-group-item-light col-md-12">Height: {{ user.patient.height_cm }} cm</li>
+                  <li class="list-group-item list-group-item-light col-md-12">Height: {{ user.patient.height_cm }} cm</li>
                   <li class="list-group-item list-group-item-light col-md-12">Weight: {{ user.patient.weight_kg }} Kgs</li>
                   <li class="list-group-item list-group-item-light col-md-12">Languages: {{ user.patient.languages }}</li>
-                  <li class="list-group-item list-group-item-light col-md-12">Health insurances: {{ user.patient.health_insurance }}</li>
                   <li class="list-group-item list-group-item-light col-md-12">Residence: {{ user.patient.residence }}</li>
                 </ul>
               </p>
@@ -63,26 +62,27 @@
 </div>
 
 
-<main role="main" class="container" style="margin-right: -580px; margin-top: -695px">
+<main role="main" class="container" style="margin-right: -580px; margin-top: -860px">
           <div class="row">
               <div class="" style="width: 530px;">
                 <div class="content-section" style="background: #ffffff; padding: 100px 20px 10px; border: 1px solid #dddddd; border-radius: 3px; margin-left: 60px; margin-top: 90px; margin-bottom: 20px;">
                   <div class="media">
                     <img class="rounded-circle account-img" style="height: 135px; width: 135px; margin-right: 20px; margin-top: -79px;"
-                         src="{{ user.patient.image.url }}">
+                         src="{{ user.patient.image.url }}" alt="{{ user.username }}">
                     <div class="media-body" style="margin-top: -60px;">
                         <h2 class="">{{ user.username }}</h2>
                         <p class="text-secondary">{{ user.email }}</p>
                         <a href="{% url 'MyDoc:profile_update' %}" class="btn btn-outline-info mr-4" >Update information</a>
                     </div>
                   </div>
-                  <p class='text-muted'>E-Medcs And Professional Working.
-                    <br><br>Profile And state
+                  <p class='text-muted'>Denver's Center of 'E-Medcs And Professional Working.
+                    <br><br>Profile And state<br><br>
                     <ul class="list-group">
                       <li class="list-group-item list-group-item-light">Age: {{ user.patient.age }}</li>
                       <li class="list-group-item list-group-item-light">Gender: {{ user.patient.gender }}</li>
                       <li class="list-group-item list-group-item-light">Contact: {{ user.patient.contact }}</li>
                       <li class="list-group-item list-group-item-light" style="color: #0b45d9">blood_type: {{ user.patient.blood_type }}</li>
+                      <li class="list-group-item list-group-item-light col-md-12">Health insurances: {{ user.patient.health_insurance }}</li>
                       <li class="list-group-item list-group-item-light" style="color: red">Last Checkup: {{ user.patient.last_check }}</li>
                       <li class="list-group-item list-group-item-light" style="color: #1c7430">Next Checkup: {{ user.patient.next_check }}</li>
                     </ul>
@@ -96,7 +96,7 @@
 
  </main>
 
- <div class="page-header" style="background: #0b0b0b; margin-bottom: 20px;">
+ <div class="page-header" style="background: #ffffff; margin-bottom: 20px; margin-top: 50px;">
             <h1 class="text-center text-primary"> <strong>Medical Records</strong></h1>
         </div>
 
@@ -122,16 +122,21 @@
                 </div>
         </div>
                 {% endfor %}
+            {% else %}
+
+            <div class="card col-sm-6" style="margin-left: 300px;">
+                <p class="text-warning" style="font-size: 30px; font-family: 'poppins', 'Sans-Serif',fantasy">No medical Records currently,
+                    We hope you are good.
+                </p>
+            </div>
+
         {% endif %}
+ <br><br>
 </div>
 
 
-        {% include 'MyDoc/footer.html' %}
+ {% include 'MyDoc/footer.html' %}
+     </body>
 {% endblock %}
-
-
- </body>
-
-
 
 

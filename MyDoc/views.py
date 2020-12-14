@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
+from django.shortcuts import render, get_object_or_404, _get_queryset, get_list_or_404, redirect
 from django.views import View
 from django.views.generic import CreateView
 
@@ -138,7 +138,7 @@ def patient(request):
     if form.is_valid():
         user = form.save(commit=False)
         user.username = request.POST['username']
-        user.image = request.FILES['image']
+        user.image = request.FILES.getlist('image')
         user.age = request.POST['age']
         user.gender = request.POST['gender']
         user.email = request.POST['email']
@@ -148,8 +148,8 @@ def patient(request):
         user.residence = request.POST['residence']
         user.languages = request.POST['languages']
         user.health_insurance = request.POST['health_insurance']
-        user.height = request.POST['height']
-        user.weight = request.POST['weight']
+        user.height_cm = request.POST['height_cm']
+        user.weight_kg = request.POST['weight_kg']
         user.user = request.user
         user.save()
         messages.success(request, f'Welcome to Denvers Hospital')
@@ -163,13 +163,15 @@ def detail(request, pat_id):
     return render(request, 'MyDoc/detail_pat.html', {'patient': patient})
 
 
-def med_detal(request, pat_id):
-    medrecs = Medrecs.objects.all(Medrecs, pk=pat_id).filter(user=request.user)
+def med_detal(request):
+    medrecs = Medrecs.objects.all()
     context = {
         'medrecs': medrecs
         }
-    return render(request, 'MyDoc/detail_pat.html', context)
+    return render(request, 'MyDoc/med_users.html', context)
 
+""" medrecs = Medrecs.objects.all().filter(doctor__doctor_name=request.user, user__patient__medrecs__in=pat_id)
+ """
 
 def my_appnts(request):
     meds = Medrecs.objects.all().filter(user=request.user)
@@ -187,7 +189,7 @@ def my_profile(request):
 def profile_update(request):
     if request.method == 'POST':
         u_update = UserUpdate(request.POST, instance=request.user)
-        p_update = ProfileUpdate(request.POST, request.FILES, instance=request.user.patient)
+        p_update = ProfileUpdate(request.POST, request.FILES or None, instance=request.user.patient)
         if u_update.is_valid() and p_update.is_valid():
             u_update.save()
             p_update.save()
@@ -252,6 +254,8 @@ def register_patient(request):
                             email=email)
         if user is not None:
             if user.is_active:
+                messages.success(request, f'Registration Successful. You will be logging'
+                                          f' in as {user.username} Complete Patient Registration')
                 login(request, user)
                 return redirect('MyDoc:patient')
     return render(request, 'MyDoc/register.html', {'form': form})

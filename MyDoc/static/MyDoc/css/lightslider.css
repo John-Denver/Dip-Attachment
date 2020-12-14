@@ -179,9 +179,10 @@
 }
 .cS-hidden {
     height: 1px;
-    opacity: 0;
+    opacity: 1;
     filter: alpha(opacity=0);
     overflow: hidden;
+    z-index: 15;
 }
 
 

@@ -88,7 +88,7 @@
         {% if message %}
             {% for mess in message %}
 
-            <div class="card col-sm-5" style="margin-left: 55px; margin-bottom: 15px;">
+            <div class="card col-sm-5" style="background-color: #fff3cd; margin-left: 55px; margin-bottom: 15px;">
                 <h6 class="text-success">From: clinician{{ mess.clinician }} <p style="text-align: right; margin-top: -18px;">[ {{ mess.name }} ]</p></h6>
                 <p style="color:#5409e9; margin-top: -18px;">cc: {{ mess.email }}</p>
                  <p style="margin-top: -16px;">Subject: {{ mess.subject }}</p>
@@ -113,41 +113,8 @@
 
 
 <!-- Footer section -->
-<div class="container-fluid" style="">
-  <div class="row">
-  <div class="page-footer" style="width: 100%; margin-bottom: 0; background-color: #5409e9; color: #46db3c;">
-      <br>
-      <div class="text-center">
-      <h3 class="text-center"><strong>MY_DOC SMART HEALTH HOSPITAL SYSTEM</strong></h3>
-          <h5 class="text-center">A Zetech Production</h5>
-          <h6 class="text-center">+254 712512358 or sms @ 15698 Denver</h6>
-          <div class="social-media">
-              <center>
-              <table>
-                  <tr>
-                      <td><a href="mailto:denverbogonko78@gmail.com" target="_blank"><i class="fa fa-envelope fa-3x" style="margin: 10px; color: rgb(5, 205, 0 );"></i></a></td>
-                      <td><a href="https://github.com/John-Denver" target="_blank"><i class="fab fa-github fa-3x" style="margin: 10px; color: rgb(5, 205, 0 );"></i></a></td>
-                      <td><a href="https://twitter.com/OfficialDenver1" target="_blank"><i class="fab fa-twitter fa-3x" style="margin: 10px; color: rgb(5, 205, 0 );"></i></a></td>
-                      <td><a href="https://instagram.com/baby_b.oss" target="_blank"><i class="fab fa-instagram fa-3x" style="margin: 10px; color: rgb(5, 205, 0 );"></i></a></td>
-                  </tr>
-              </table>
-              </center>
-          </div>
-      </div>
 
-
-      <div class="copyright text-center" style="padding-top: 1px;
-      font-weight: 600;
-      font-size: 18px;
-      text-shadow: none;">
-           <p>
-      &copy; <script>document.write(new Date().getFullYear())</script> <a href="#">Denver and Company</a>, MAke it to the top.
-    </p>
-      </div>
-
-  </div>
-  </div>
- </div>
+ {% include 'MyDoc/footer.html' %}
   <!--End Footer section -->
 
 {% endblock %}
