@@ -66,6 +66,7 @@ def appnt_detail(request, appointment_id):
     return render(request, 'MyDoc/appnt_detail.html', {'u_appointment': u_appointment})
 
 
+@login_required(login_url='MyDoc:login_patient')
 def u_appointment(request):
     u_appointment = UserAppointment.objects.all().filter(user=request.user)
     context = {
@@ -74,14 +75,20 @@ def u_appointment(request):
     return render(request, 'MyDoc/my_appnts.html', context)
 
 
+def delete_appnt_detal(request, appointment_id):
+    u_a = get_object_or_404(Appointment, pk=appointment_id)
+    return render(request, 'MyDoc/patient_confirm_delete.html', {'u_a': u_a})
+
+
 def delete_appnt(request, appointment_id):
     u_a = UserAppointment.objects.get(pk=appointment_id)
     u_a.delete()
     messages.warning(request, f'Your appointment was deleted')
     u_a = UserAppointment.objects.all()
-    return render(request, 'MyDoc/my_appnts.html', {'u_a': u_a})
+    return render(request, 'MyDoc/patient_confirm_delete.html', {'u_a': u_a})
 
 
+@login_required(login_url='MyDoc:login_patient')
 def message(request):
     mess = Message.objects.all().filter(to=request.user)
     context = {
@@ -90,6 +97,7 @@ def message(request):
     return render(request, 'MyDoc/message.html', context)
 
 
+@login_required(login_url='MyDoc:login_patient')
 def recept(request):
     recept = Recept.objects.all().filter(user=request.user)
     context = {
@@ -138,7 +146,7 @@ def patient(request):
     if form.is_valid():
         user = form.save(commit=False)
         user.username = request.POST['username']
-        user.image = request.FILES.getlist('image')
+        user.image = request.FILES['image']
         user.age = request.POST['age']
         user.gender = request.POST['gender']
         user.email = request.POST['email']

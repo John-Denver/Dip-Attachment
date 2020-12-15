@@ -38,6 +38,7 @@ urlpatterns = [
     path('(?<appointment_id>[0-9]+)/appnt_detail', views.appnt_detail, name='appnt_detail'),
     path('u_appointment', views.u_appointment, name='u_appointment'),
     path('(?<appointment_id>[0-9]+)/delete_appnt', views.delete_appnt, name='delete_appnt'),
+    path('(?<appointment_id>[0-9]+)/delete_appnt_detal', views.delete_appnt_detal, name='delete_appnt_detal'),
 
     path('my_profile', views.my_profile, name='my_profile'),
     path('patient_profile', views.patient_profile, name='patient_profile'),

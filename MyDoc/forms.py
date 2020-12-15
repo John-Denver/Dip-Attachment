@@ -38,7 +38,7 @@ class AppointmentForm(forms.ModelForm):
 
     class Meta:
         model = Appointment
-        fields = '__all__'
+        fields = ['user', 'doc', 'name', 'subject', 'number', 'location', 'email', 'message']
 
 
 class ContactForm(forms.ModelForm):

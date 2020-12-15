@@ -87,7 +87,7 @@ class Clinician(models.Model):
 
 
 class Medrecs(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE, related_name="meds")
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name="meds")
     title = models.CharField(max_length=60, null=True)
     doctor = models.ForeignKey('Doctors.Doctor', null=True, on_delete=models.PROTECT)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
